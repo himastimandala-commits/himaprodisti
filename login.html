@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <link rel="icon" href="assets/img/logo.png" />
+    <title>Login • HIMA STI</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- App CSS -->
+
+    <link href="assets/css/login.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <!-- CARD -->
+          <div class="login-card p-4 p-md-5">
+            <!-- HEADER -->
+            <div
+              class="d-flex flex-column align-items-center gap-3 mb-4 text-center"
+            >
+              <img
+                src="assets/img/logo.png"
+                class="brand-badge"
+                alt="Logo HIMA STI"
+              />
+              <div>
+                <div class="fw-bold fs-5">HIMA Prodi STI</div>
+                <small class="text-muted">Sistem Informasi Organisasi</small>
+              </div>
+            </div>
+            <div id="alert"></div>
+            <!-- TITLE -->
+            <div class="text-center">
+              <h5 class="fw-bold mb-1" style="letter-spacing: 1px">
+                Masuk ke Dashboard
+              </h5>
+              <div class="text-muted mb-4">
+                Masukkan username dan password untuk mengakses panel organisasi.
+              </div>
+            </div>
+            <!-- FORM -->
+            <form onsubmit="handleLogin(event)">
+              <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input
+                  id="username"
+                  class="form-control"
+                  placeholder="admin"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input
+                  id="password"
+                  type="password"
+                  class="form-control"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+
+              <button id="btnLogin" class="btn btn-primary w-100 mb-2">
+                Masuk
+              </button>
+            </form>
+
+            <!-- BACK HOME -->
+            <a
+              href="index.html"
+              class="btn btn-outline-secondary w-100 btn-back mt-2"
+            >
+              ⬅ Kembali ke Beranda
+            </a>
+
+            <hr class="my-4" />
+          </div>
+          <!-- END CARD -->
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/auth.js"></script>
+  </body>
+</html>

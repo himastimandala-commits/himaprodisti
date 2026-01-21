@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Agenda • HIMA STI</title>
+     <link rel="icon" href="assets/img/logo.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/app.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+</head>
+<body>
+<div class="d-flex">
+  <aside class="sidebar bg-white border-end p-3 no-print">
+    <div class="d-flex align-items-center gap-2 mb-4">
+      <img src="assets/img/logo.png" class="brand-badge" alt="Logo">
+      <div><div class="fw-bold">HIMA STI</div><small class="text-muted">Organization Panel</small></div>
+    </div>
+    <div class="nav flex-column nav-pills gap-1">
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="officers.html">Struktur Kepengurusan</a>
+      <a class="nav-link" href="members.html">Data Anggota</a>
+      <a class="nav-link" href="alumni.html">Alumni</a>
+      <a class="nav-link active" href="agenda.html">Agenda</a>
+      <a class="nav-link" href="kta.html">Cetak KTA</a>
+    </div>
+    <div class="mt-4 p-3 rounded-4 bg-light">
+      <div class="small text-muted">Login sebagai</div>
+      <div class="fw-semibold" id="who">-</div>
+      <button class="btn btn-outline-danger btn-sm w-100 mt-2" id="btnLogout">Logout</button>
+    </div>
+  </aside>
+
+  <main class="flex-fill p-3 p-md-4">
+    <div class="hero-strip p-3 p-md-4 mb-3" data-aos="fade-up">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+        <div>
+          <h4 class="mb-1">Agenda Kegiatan</h4>
+          <div class="text-muted">Manajemen agenda resmi: terjadwal, terdokumentasi, mudah dibaca.</div>
+        </div>
+        <span class="badge badge-soft rounded-pill px-3 py-2" id="count">0 Agenda</span>
+      </div>
+
+      <div class="row g-2 mt-3">
+        <div class="col-md-6">
+          <input id="q" class="form-control" placeholder="Cari judul / lokasi / deskripsi..." />
+        </div>
+        <div class="col-md-3">
+          <select id="filterStatus" class="form-select">
+            <option value="">Semua Status</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div class="col-md-3 d-grid">
+          <button class="btn btn-primary" id="btnRefresh">Refresh</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="alert" class="alert alert-info">Memuat agenda...</div>
+
+    <div class="row g-3">
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="card card-soft p-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="fw-bold" id="formTitle">Tambah Agenda</div>
+              <div class="text-muted small">Isi detail agenda untuk tampilan event organisasi.</div>
+            </div>
+            <span class="badge text-bg-light border" id="modeBadge">CREATE</span>
+          </div>
+          <hr>
+
+          <form id="formAgenda">
+            <div class="mb-2">
+              <label class="form-label">Judul</label>
+              <input id="judul" class="form-control" required>
+            </div>
+
+            <div class="row g-2">
+              <div class="col-md-6">
+                <label class="form-label">Tanggal</label>
+                <input id="tanggal" type="date" class="form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Waktu</label>
+                <input id="waktu" type="time" class="form-control">
+              </div>
+            </div>
+
+            <div class="mt-2">
+              <label class="form-label">Lokasi</label>
+              <input id="lokasi" class="form-control" placeholder="Aula / Ruang / Link Zoom">
+            </div>
+
+            <div class="mt-2">
+              <label class="form-label">Deskripsi</label>
+              <textarea id="deskripsi" class="form-control" rows="3" placeholder="Deskripsi kegiatan"></textarea>
+            </div>
+
+            <div class="mt-2">
+              <label class="form-label">Cover URL</label>
+              <input id="coverUrl" class="form-control" placeholder="Link gambar cover">
+            </div>
+
+            <div class="mt-2">
+              <label class="form-label">Status</label>
+              <select id="status" class="form-select">
+                <option value="upcoming">Upcoming</option>
+                <option value="done">Done</option>
+              </select>
+            </div>
+
+            <div class="d-flex gap-2 mt-3">
+              <button class="btn btn-primary flex-fill" type="submit" id="btnSave">Simpan</button>
+              <button class="btn btn-outline-secondary" type="button" id="btnReset">Reset</button>
+            </div>
+          </form>
+
+          <div class="small text-muted mt-3">
+            Catatan: fitur hapus hanya untuk <b>admin</b>.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="row g-3" id="grid"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ once:true, duration:700, offset:60 });</script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/agenda.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+:root{
+  --brand:#0d6efd;
+  --brand2:#6610f2;
+}
+
+body{background:#f5f7fb;}
+.card-soft{
+  border:0;
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(16,24,40,.08);
+}
+.sidebar{
+  width: 290px;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+}
+.brand-badge{
+  width:42px;height:42px;border-radius:14px;object-fit:cover;
+}
+.avatar{
+  width:52px;height:52px;border-radius:16px;object-fit:cover;
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+}
+.hero-strip{
+  background: linear-gradient(135deg, rgba(13,110,253,.10), rgba(102,16,242,.10));
+  border:1px solid rgba(16,24,40,.06);
+  border-radius: 18px;
+}
+.badge-soft{
+  background: rgba(13,110,253,.10);
+  color: #0d6efd;
+  border:1px solid rgba(13,110,253,.20);
+}
+.line-clamp-2{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* Print KTA */
+@media print{
+  body{background:#fff !important;}
+  .no-print{display:none !important;}
+  .print-area{margin:0 !important;}
+}
+.kta-card{
+  width: 86mm;
+  height: 54mm;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #0d6efd 0%, #6610f2 60%, #111827 100%);
+  color:#fff;
+}
+.kta-inner{ padding: 12px; display:flex; gap:12px; }
+.kta-photo{
+  width: 70px;height: 70px;border-radius: 14px;object-fit:cover;
+  border: 2px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.12);
+}
+.kta-meta small{opacity:.88;}
+.kta-qr{
+  position:absolute;
+  right:10px; bottom:10px;
+  background:#fff; padding:6px; border-radius:10px;
+}

@@ -1,0 +1,183 @@
+@import url("assets/css/index.css");
+
+/* Org chart specific styles */
+.org-section {
+  --card-bg: #ffffff;
+  --card-border: #e9ecef;
+}
+
+.org-top {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.org-card {
+  min-width: 220px;
+  max-width: 260px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(13, 38, 76, 0.04);
+}
+
+.org-card img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #f1f3f5;
+}
+
+.org-role {
+  display: block;
+  font-weight: 700;
+  color: #0b5ed7;
+  margin-top: 0.6rem;
+}
+
+.org-name {
+  display: block;
+  margin-top: 0.35rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.org-meta {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+/* Department row connectors (visual only) */
+.dept-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.dept-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 200px;
+}
+
+.member-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.member-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.member-item img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eef2ff;
+}
+
+.member-socials a {
+  margin-left: 0.35rem;
+  color: #444;
+  text-decoration: none;
+}
+
+/* smaller screens: stack nicely */
+@media (max-width: 768px) {
+  .org-card {
+    max-width: 100%;
+  }
+  .org-top {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .dept-row {
+    flex-direction: column;
+  }
+}
+
+/* small helper for member social icons */
+.social-icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.social-ig {
+  background: linear-gradient(135deg, #feda75, #d62976);
+}
+.social-wa {
+  background: #25d366;
+}
+.social-yt {
+  background: #ff0000;
+}
+.social-gh {
+  background: #111827;
+}
+
+[data-theme="dark"] {
+  background: #181a20;
+  color: #e0e7ef;
+}
+[data-theme="dark"] .org-section {
+  --card-bg: #23272f;
+  --card-border: #333842;
+}
+[data-theme="dark"] .org-card,
+[data-theme="dark"] .dept-col .org-card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+  color: #e0e7ef;
+}
+[data-theme="dark"] .org-role {
+  color: #38bdf8;
+}
+[data-theme="dark"] .org-name {
+  color: #fff;
+}
+[data-theme="dark"] .org-meta {
+  color: #94a3b8;
+}
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .nav-glass {
+  background: #23272f !important;
+  color: #e0e7ef !important;
+  border-bottom: 1px solid #333842 !important;
+}
+[data-theme="dark"] .navbar .nav-link,
+[data-theme="dark"] .navbar .dropdown-menu {
+  color: #e0e7ef !important;
+  background: #23272f !important;
+}
+[data-theme="dark"] .footer {
+  background: linear-gradient(100deg, #181a20 0%, #23272f 100%) !important;
+  color: #e0e7ef !important;
+}
+[data-theme="dark"] .footer a {
+  color: #38bdf8 !important;
+}
+[data-theme="dark"] .modal-content {
+  background: #23272f;
+  color: #e0e7ef;
+}

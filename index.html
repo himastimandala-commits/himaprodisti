@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>HIMA PRODI STI</title>
+    <link rel="icon" href="assets/img/logo.png" />
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <style>
+      @import url("assets/css/index.css");
+
+      /* =========================
+         BACK TO TOP BUTTON
+      ========================= */
+      #backToTop {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+        z-index: 9999;
+      }
+      #backToTop:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.45);
+      }
+      #backToTop.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      @media (max-width: 576px) {
+        #backToTop {
+          width: 42px;
+          height: 42px;
+          font-size: 16px;
+          bottom: 18px;
+          right: 18px;
+        }
+      }
+    </style>
+  </head>
+
+  <body data-theme="light">
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+    <nav
+      class="navbar navbar-expand-lg nav-glass sticky-top shadow-sm bg-white"
+      style="backdrop-filter: blur(8px); border-bottom: 1px solid #e9ecef"
+    >
+      <div class="container py-2">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2 fw-bold fs-5"
+          href="#"
+        >
+          <img
+            src="assets/img/logo.png"
+            class="brand-badge shadow-sm"
+            alt="Logo"
+            style="width: 38px; height: 38px; border-radius: 10px"
+          />
+          <span class="text-primary">HIMA PRODI STI</span>
+        </a>
+        <div class="d-flex align-items-center gap-3">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu"
+            aria-controls="navMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto gap-lg-3">
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="#about">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="#divisi">Divisi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="#kegiatan">Kegiatan</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link fw-semibold px-3 dropdown-toggle"
+                href="#"
+                id="strukturDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Struktur & Anggota
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="strukturDropdown">
+                <li>
+                  <a
+                    class="dropdown-item struktur-dropdown-item"
+                    href="struktur.html"
+                    >Struktur Organisasi</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item struktur-dropdown-item"
+                    href="#anggota"
+                    >Anggota</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <style>
+              body[data-theme="dark"] .struktur-dropdown-item {
+                color: #fff !important;
+                background-color: #222 !important;
+              }
+              body[data-theme="dark"] .dropdown-menu {
+                background-color: #222 !important;
+                border-color: #333 !important;
+              }
+            </style>
+            <style>
+              body[data-theme="dark"] .dropdown-menu .dropdown-item {
+                color: #fff !important;
+                background-color: #222 !important;
+              }
+              body[data-theme="dark"] .dropdown-menu {
+                background-color: #222 !important;
+                border-color: #333 !important;
+              }
+            </style>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link fw-semibold px-3 dropdown-toggle"
+                href="#"
+                id="beritaDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Informasi
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="beritaDropdown">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://himaprodisti.wordpress.com/category/berita/"
+                    target="_blank"
+                    rel="noopener"
+                    >Berita</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://himaprodisti.wordpress.com/category/artikel/"
+                    target="_blank"
+                    rel="noopener"
+                    >Artikel</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://himaprodisti.wordpress.com/category/opini/"
+                    target="_blank"
+                    rel="noopener"
+                    >Opini</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://himaprodisti.wordpress.com/category/prestasi/"
+                    target="_blank"
+                    rel="noopener"
+                    >Prestasi</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="#kontak">Kontak</a>
+            </li>
+          </ul>
+        </div>
+        <div class="ms-lg-3 mt-2 mt-lg-0 d-flex align-items-center gap-2">
+          <!-- <a href="login.html" class="btn btn-primary px-3 shadow-sm">
+            <i class="fas fa-sign-in-alt me-2"></i>Login
+          </a> -->
+          <!-- Dark Mode Toggle -->
+          <button
+            class="theme-toggle btn btn-light border-0 shadow-sm ms-2"
+            id="themeToggle"
+            style="width: 40px; height: 40px; border-radius: 50%"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Kembali ke atas">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- =========================
+         HERO SECTION
+    ========================= -->
+    <header class="container my-5" id="home">
+      <div
+        class="hero-strip p-4 p-md-5 position-relative rounded-4 shadow-lg bg-white"
+        data-aos="fade-up"
+        style="overflow: hidden"
+      >
+        <!-- Decorative floating shapes -->
+        <div
+          class="floating-shape floating-shape-1"
+          style="
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: 0;
+          "
+        ></div>
+        <div
+          class="floating-shape floating-shape-2"
+          style="
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+            opacity: 0.12;
+            border-radius: 50%;
+            z-index: 0;
+          "
+        ></div>
+        <div
+          class="row align-items-center g-4 position-relative"
+          style="z-index: 1"
+        >
+          <div class="col-lg-7">
+            <span
+              class="badge text-bg-primary mb-3 px-3 py-2 shadow-sm fs-6 w-100 w-md-auto text-center"
+              style="white-space: normal; word-break: break-word"
+            >
+              <i class="fas fa-users me-1"></i>
+              Himpunan Mahasiswa Prodi Sistem &amp; Teknologi Informasi
+            </span>
+            <h1 class="fw-bold display-5 mb-3 lh-sm">
+              Membangun <span class="text-primary">Kultur Digital</span>,
+              <br class="d-none d-md-block" />
+              Prestasi, dan Kolaborasi.
+            </h1>
+            <p class="mb-4 fs-5 text-muted">
+              Wadah pengembangan minat-bakat mahasiswa Sistem & Teknologi
+              Informasi: akademik, inovasi, riset, komunitas, dan pengabdian.<br />
+              <b class="text-primary">"Bersatu, Berkarya, Berdampak."</b>
+            </p>
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <a href="#kegiatan" class="btn btn-primary px-4 py-2 shadow">
+                <i class="fas fa-calendar-alt me-2"></i>Lihat Kegiatan
+              </a>
+              <a
+                href="mailto:hmjsti.mandala@gmail.com"
+                class="btn btn-outline-primary px-4 py-2 shadow-sm"
+              >
+                <i class="fas fa-envelope me-2"></i>Hubungi Kami
+              </a>
+            </div>
+            <div class="row g-3 mt-2">
+              <!-- Feature Cards -->
+              <div class="col-md-4" data-aos="zoom-in" data-aos-delay="60">
+                <div
+                  class="card card-soft p-3 h-100 feature-card border-0 shadow-sm"
+                >
+                  <div class="fw-bold d-flex align-items-center mb-1">
+                    <i class="fas fa-tasks me-2 text-primary"></i> Program Kerja
+                  </div>
+                  <div class="text-muted small">
+                    Agenda rutin, event besar, dan kolaborasi lintas organisasi.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4" data-aos="zoom-in" data-aos-delay="120">
+                <div
+                  class="card card-soft p-3 h-100 feature-card border-0 shadow-sm"
+                >
+                  <div class="fw-bold d-flex align-items-center mb-1">
+                    <i class="fas fa-chart-line me-2 text-primary"></i>
+                    Pengembangan
+                  </div>
+                  <div class="text-muted small">
+                    Pelatihan web, desain, data, public speaking, dan
+                    kepemimpinan.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4" data-aos="zoom-in" data-aos-delay="180">
+                <div
+                  class="card card-soft p-3 h-100 feature-card border-0 shadow-sm"
+                >
+                  <div class="fw-bold d-flex align-items-center mb-1">
+                    <i class="fas fa-bullhorn me-2 text-primary"></i> Media &
+                    Humas
+                  </div>
+                  <div class="text-muted small">
+                    Dokumentasi, publikasi, branding, dan informasi kegiatan
+                    kampus.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Maskot -->
+          <div
+            class="col-lg-5 d-flex flex-column align-items-center justify-content-center"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            <div
+              style="display: flex; flex-direction: column; align-items: center"
+            >
+              <img
+                src="assets/img/maskod.png"
+                alt="Maskot HIMA"
+                class="mb-3 animated-maskot"
+                style="
+                  max-width: 360px;
+                  width: 100%;
+                  transition: transform 0.6s
+                    cubic-bezier(0.68, -0.55, 0.27, 1.55);
+                "
+              />
+            </div>
+            <div class="text-muted text-center">
+              Maskot HIMA Prodi STI melambangkan semangat, kreativitas, dan
+              kebersamaan mahasiswa. Menjadi ikon inspiratif dalam setiap
+              kegiatan dan program organisasi.
+            </div>
+            <style>
+              .animated-maskot {
+                animation: maskot-bounce 2.5s infinite;
+              }
+              @keyframes maskot-bounce {
+                0%,
+                100% {
+                  transform: translateY(0) scale(1);
+                }
+                10% {
+                  transform: translateY(-10px) scale(1.05);
+                }
+                20% {
+                  transform: translateY(-20px) scale(1.1);
+                }
+                30% {
+                  transform: translateY(-10px) scale(1.05);
+                }
+                40% {
+                  transform: translateY(0) scale(1);
+                }
+                50% {
+                  transform: translateY(0) scale(1);
+                }
+                60% {
+                  transform: translateY(-8px) scale(1.03);
+                }
+                70% {
+                  transform: translateY(-16px) scale(1.07);
+                }
+                80% {
+                  transform: translateY(-8px) scale(1.03);
+                }
+                90% {
+                  transform: translateY(0) scale(1);
+                }
+              }
+            </style>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================
+         STATISTIK SECTION
+    ========================= -->
+    <!-- <section class="container my-5">
+      <div class="row g-4">
+        <div class="col-md-3" data-aos="fade-up">
+          <div class="counter-item card-soft">
+            <div class="counter-value" id="statMembers">0</div>
+            <div class="counter-label">Anggota Aktif</div>
+          </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="counter-item card-soft">
+            <div class="counter-value" id="statAgenda">0</div>
+            <div class="counter-label">Agenda Mendatang</div>
+          </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="counter-item card-soft">
+            <div class="counter-value" id="statOfficers">0</div>
+            <div class="counter-label">Pengurus</div>
+          </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="counter-item card-soft">
+            <div class="counter-value" id="statAlumni">0</div>
+            <div class="counter-label">Alumni</div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- =========================
+         ABOUT SECTION
+    ========================= -->
+    <section id="about" class="container my-5">
+      <h2 class="section-title fw-bold" data-aos="fade-up">
+        Tentang HIMA PRODI STI
+      </h2>
+      <div class="row g-4">
+        <!-- Profil Organisasi -->
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="card card-soft p-4 h-100">
+            <h3 class="fw-bold mb-3 d-flex align-items-center">
+              <i class="fas fa-university me-2 text-primary"></i> Profil
+              Organisasi
+            </h3>
+            <p class="text-muted text-justify" style="text-align: justify">
+              Himpunan Mahasiswa Program Studi Sistem dan Teknologi Informasi
+              (HIMA Prodi STI ) didirikan pada tanggal 12 Oktober 2022 sebagai
+              wadah organisasi mahasiswa yang bertujuan untuk meningkatkan
+              kualitas akademik, pengembangan keilmuan, serta mempererat
+              solidaritas antar mahasiswa Program Studi Sistem dan Teknologi
+              Informasi (STI).
+              <br /><br />
+              Sebagai organisasi yang berdiri dengan visi jangka panjang, HIMA
+              Prodi STI berkomitmen untuk terus memberikan kontribusi positif
+              dalam pengembangan kompetensi mahasiswa dan mendukung
+              kegiatan-kegiatan yang bermanfaat baik secara akademik maupun
+              sosial. Organisasi ini beroperasi tanpa batas waktu, berfokus pada
+              keberlanjutan dan kemajuan bersama.
+            </p>
+            <div class="mt-4">
+              <h5 class="fw-bold d-flex align-items-center">
+                <i class="fas fa-eye me-2 text-primary"></i> Visi
+              </h5>
+              <p class="text-muted text-justify" style="text-align: justify">
+                Mewujudkan HIMA Prodi STI yang unggul, solid, dan profesional
+                dalam berkarya serta berkontribusi nyata bagi kemajuan kampus.
+              </p>
+            </div>
+            <div class="mt-4">
+              <h5 class="fw-bold d-flex align-items-center">
+                <i class="fas fa-bullseye me-2 text-primary"></i> Misi
+              </h5>
+              <ul class="text-muted mb-0" style="text-align: justify">
+                <li class="mb-2">Meningkatkan kualitas anggota.</li>
+                <li class="mb-2">
+                  Menumbuhkan solidaritas dan jiwa kekeluargaan.
+                </li>
+                <li class="mb-2">Membangun profesionalitas organisasi.</li>
+                <li class="mb-2">Berperan aktif dalam dinamika kampus.</li>
+                <li>Menciptakan citra positif HIMA Prodi STI.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Nilai Utama & Maskot HIMA -->
+        <div class="col-lg-6 mb-4" data-aos="fade-left">
+          <div
+            class="card card-soft overflow-hidden border-0 shadow-lg h-100 d-flex flex-column"
+          >
+            <!-- Video Profil Fakultas -->
+            <div class="position-relative">
+              <div
+                style="
+                  width: 100%;
+                  aspect-ratio: 16/9;
+                  background: #000;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/zRrj-34UFas"
+                  title="Profil Fakultas"
+                  frameborder="0"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  allowfullscreen
+                  style="
+                    border-radius: 8px;
+                    width: 100%;
+                    height: 100%;
+                    min-height: 260px;
+                  "
+                ></iframe>
+              </div>
+              <div class="position-absolute top-0 start-0 m-3">
+                <span class="badge bg-primary shadow">Profil Fakultas</span>
+              </div>
+              <div class="position-absolute bottom-0 end-0 m-3">
+                <a
+                  href="https://www.youtube.com/channel/UCMZ8ZuleQ4FjHVtzClYaRGg"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-light btn-sm rounded-pill shadow-sm"
+                >
+                  <i class="fab fa-youtube text-danger me-1"></i> YouTube HIMA
+                </a>
+              </div>
+            </div>
+            <div class="p-3">
+              <div class="text-muted small">
+                <i class="fas fa-info-circle me-1"></i> Video profil Fakultas
+                Sains, Teknologi, dan Industri.
+              </div>
+            </div>
+            <!-- Nilai Utama -->
+            <div class="mt-4 px-3 pb-3">
+              <h3
+                class="fw-bold mb-3 d-flex align-items-center justify-content-center"
+              >
+                <i class="fas fa-star me-2 text-primary"></i> Nilai Utama
+              </h3>
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="p-3 border rounded-4 bg-white h-100 text-center">
+                    <div class="divisi-icon mx-auto mb-2">
+                      <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="fw-bold">Integritas</div>
+                    <div class="text-muted small">
+                      Jujur, bertanggung jawab, transparan dalam program.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-3 border rounded-4 bg-white h-100 text-center">
+                    <div class="divisi-icon mx-auto mb-2">
+                      <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="fw-bold">Kolaborasi</div>
+                    <div class="text-muted small">
+                      Kerja tim yang solid dan saling menguatkan.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-3 border rounded-4 bg-white h-100 text-center">
+                    <div class="divisi-icon mx-auto mb-2">
+                      <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="fw-bold">Inovasi</div>
+                    <div class="text-muted small">
+                      Solusi kreatif dan relevan untuk kebutuhan mahasiswa.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-3 border rounded-4 bg-white h-100 text-center">
+                    <div class="divisi-icon mx-auto mb-2">
+                      <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="fw-bold">Impact</div>
+                    <div class="text-muted small">
+                      Program yang terasa manfaatnya, bukan sekadar formalitas.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         DIVISI SECTION
+    ========================= -->
+    <section id="divisi" class="container my-5">
+      <h2 class="section-title fw-bold" data-aos="fade-up">Struktur Divisi</h2>
+      <div class="text-muted mb-4" data-aos="fade-up" data-aos-delay="80">
+        Tim kerja yang solid untuk mencapai visi dan misi HIMA PRODI STI
+      </div>
+      <div class="row g-3">
+        <!-- SDM -->
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="card card-soft p-4 h-100 text-center">
+            <div class="divisi-icon mx-auto">
+              <i class="fas fa-users-cog"></i>
+            </div>
+            <h4 class="fw-bold mb-2">SDM</h4>
+            <div class="text-muted">
+              <b>SDM (Sumber Daya Manusia)</b> <br />bertanggung jawab atas
+              pengembangan anggota, kaderisasi, rekrutmen, serta peningkatan
+              skill organisasi melalui pelatihan dan pembinaan internal.
+            </div>
+          </div>
+        </div>
+        <!-- INFOKOM -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="80">
+          <div class="card card-soft p-4 h-100 text-center">
+            <div class="divisi-icon mx-auto">
+              <i class="fas fa-broadcast-tower"></i>
+            </div>
+            <h4 class="fw-bold mb-2">INFOKOM</h4>
+            <div class="text-muted">
+              <b>INFOKOM (Informasi dan Komunikasi)</b> <br />berfokus pada
+              desain, pembuatan konten, publikasi, dokumentasi, serta
+              pengelolaan media sosial dan komunikasi eksternal himpunan.
+            </div>
+          </div>
+        </div>
+        <!-- LITBANG -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="160">
+          <div class="card card-soft p-4 h-100 text-center">
+            <div class="divisi-icon mx-auto">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h4 class="fw-bold mb-2">LITBANG</h4>
+            <div class="text-muted">
+              <b>LITBANG (Literasi dan Pengembangan)</b> <br />menyelenggarakan
+              pelatihan teknologi seperti web development, data science, UI/UX,
+              serta melakukan riset terapan untuk mendukung inovasi di
+              lingkungan kampus.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         KEGIATAN SECTION
+    ========================= -->
+    <section id="kegiatan" class="container my-5">
+      <h2 class="section-title fw-bold" data-aos="fade-up">
+        Kegiatan & Agenda
+      </h2>
+      <div class="text-muted mb-4" data-aos="fade-up" data-aos-delay="80">
+        Berbagai kegiatan yang telah dan akan dilaksanakan oleh HIMA PRODI STI
+      </div>
+      <div class="row g-3">
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="card card-soft p-4 h-100">
+            <div class="fw-bold d-flex align-items-center">
+              <i class="fas fa-code me-2 text-primary"></i> Web Programming
+              Training
+            </div>
+            <div class="text-muted mt-2">
+              Pelatihan rutin untuk meningkatkan skill web development dan
+              membangun portofolio.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="80">
+          <div class="card card-soft p-4 h-100">
+            <div class="fw-bold d-flex align-items-center">
+              <i class="fas fa-chalkboard-teacher me-2 text-primary"></i>
+              Seminar & Webinar
+            </div>
+            <div class="text-muted mt-2">
+              Topik terkini: AI, cloud computing, keamanan data, dan tren
+              industri digital.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="160">
+          <div class="card card-soft p-4 h-100">
+            <div class="fw-bold d-flex align-items-center">
+              <i class="fas fa-hands-helping me-2 text-primary"></i> Pengabdian
+              Masyarakat
+            </div>
+            <div class="text-muted mt-2">
+              Edukasi literasi digital untuk sekolah dan komunitas sekitar
+              kampus.
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- WP POSTS -->
+      <div class="mt-5">
+        <h3 class="fw-bold mb-3" data-aos="fade-up">Publikasi & Berita HIMA</h3>
+        <div
+          class="d-flex flex-wrap gap-2 wp-tabs mb-4"
+          data-aos="fade-up"
+          data-aos-delay="120"
+        >
+          <button class="wp-tab active" data-cat="berita">
+            <i class="fas fa-newspaper me-1"></i>Berita
+          </button>
+          <button class="wp-tab" data-cat="artikel">
+            <i class="fas fa-pen-alt me-1"></i>Artikel
+          </button>
+          <button class="wp-tab" data-cat="opini">
+            <i class="fas fa-comment-alt me-1"></i>Opini
+          </button>
+          <button class="wp-tab" data-cat="prestasi">
+            <i class="fas fa-trophy me-1"></i>Prestasi
+          </button>
+        </div>
+        <div id="wpStatus" class="text-muted small mb-3"></div>
+        <div class="row g-3" id="wpGrid"></div>
+      </div>
+      <style>
+        @media (max-width: 576px) {
+          #wpGrid > .col-md-4 {
+            flex: 0 0 50%;
+            max-width: 50%;
+          }
+        }
+      </style>
+    </section>
+
+    <!-- =========================
+         FOOTER SECTION
+    ========================= -->
+    <footer
+      id="kontak"
+      class="footer py-5 border-0"
+      style="
+        background: linear-gradient(100deg, #2563eb 0%, #38bdf8 100%);
+        color: #fff;
+        box-shadow: 0 0 32px 0 rgba(37, 99, 235, 0.08);
+      "
+    >
+      <div class="container">
+        <div class="row g-4 align-items-start">
+          <!-- Info HIMA -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <img
+                src="assets/img/logo.png"
+                class="brand-badge shadow"
+                alt="Logo"
+                style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 14px;
+                  background: #fff;
+                "
+              />
+              <span class="fw-bold fs-4" style="color: #fff"
+                >HIMA PRODI STI</span
+              >
+            </div>
+            <p class="mb-3" style="color: #e0e7ef">
+              Himpunan Mahasiswa Sistem &amp; Teknologi Informasi<br />
+              Fakultas Sains, Teknologi, dan Industri<br />
+              Institut Teknologi dan Sains Mandala
+            </p>
+            <ul class="list-unstyled mb-2" style="color: #e0e7ef">
+              <li class="mb-1">
+                <i class="fas fa-envelope me-2 text-info"></i>
+                <a
+                  href="mailto:hmjsti.mandala@gmail.com"
+                  class="text-white text-decoration-none"
+                  >hmjsti.mandala@gmail.com</a
+                >
+              </li>
+              <li class="mb-1">
+                <i class="fas fa-phone me-2 text-info"></i>
+                <a
+                  href="tel:085236398673"
+                  class="text-white text-decoration-none"
+                  >085236398673</a
+                >
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt me-2 text-info"></i>
+                <span style="color: #e0e7ef"
+                  >Jl. Sumatra No.118-120, Tegal Boto Lor, Sumbersari, Kec.
+                  Sumbersari, Kabupaten Jember, Jawa Timur 68121</span
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Link Cepat -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="fw-bold mb-3" style="color: #fff">Link Cepat</div>
+            <ul class="list-unstyled d-flex flex-column gap-2">
+              <li>
+                <a
+                  href="#about"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Tentang Kami</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#divisi"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Divisi</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#kegiatan"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Kegiatan</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#kontak"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Kontak</a
+                >
+              </li>
+              <li>
+                <a
+                  href="login.html"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Login</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Social Media -->
+          <div class="col-md-4">
+            <div class="fw-bold mb-3" style="color: #fff">Tetap Terhubung</div>
+            <p class="mb-3" style="color: #e0e7ef">
+              Dapatkan info terbaru tentang kegiatan dan program HIMA Prodi STI.
+            </p>
+            <div class="d-flex gap-3">
+              <a
+                href="https://www.instagram.com/himasti.itsm/"
+                class="social-link btn btn-light shadow rounded-circle p-2"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                style="
+                  background: linear-gradient(135deg, #fdc468 0%, #df4996 100%);
+                  border: none;
+                "
+              >
+                <i class="fab fa-instagram fs-5" style="color: #fff"></i>
+              </a>
+              <a
+                href="https://www.tiktok.com/@himasti.itsm?is_from_webapp=1&sender_device=pc"
+                class="social-link btn btn-light shadow rounded-circle p-2"
+                target="_blank"
+                rel="noopener"
+                aria-label="TikTok"
+                style="background: #000; border: none"
+              >
+                <i class="fab fa-tiktok fs-5" style="color: #fff"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UCMZ8ZuleQ4FjHVtzClYaRGg"
+                class="social-link btn btn-light shadow rounded-circle p-2"
+                target="_blank"
+                rel="noopener"
+                aria-label="YouTube"
+                style="background: #ff0000; border: none"
+              >
+                <i class="fab fa-youtube fs-5" style="color: #fff"></i>
+              </a>
+              <a
+                href="https://github.com/himastimandala-commits"
+                class="social-link btn btn-light shadow rounded-circle p-2"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub"
+                style="background: #222; border: none"
+              >
+                <i class="fab fa-github fs-5" style="color: #fff"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" style="border-color: #bae6fd; opacity: 0.3" />
+        <div class="text-center small" style="color: #e0e7ef">
+          © <span id="year"></span> <b>HIMA Prodi STI</b> &mdash; Sistem &amp;
+          Teknologi Informasi
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+    <script>
+      // Set current year in footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Change document title on navbar link click
+      document
+        .querySelectorAll("a.nav-link, a.dropdown-item")
+        .forEach((link) => {
+          link.addEventListener("click", function () {
+            document.title = "HIMA PRODI STI | " + this.textContent.trim();
+          });
+        });
+
+      // Back to Top Button Functionality
+      const backToTop = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
+    <!-- WhatsApp Chat Popup -->
+     <link rel="stylesheet" href="assets/css/popupwa.css" />
+    <button id="waPopupBtn" aria-label="Chat WhatsApp" type="button">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+    <div id="waPopupBox">
+      <div class="wa-header">
+        <i class="fab fa-whatsapp"></i>
+        Chat HIMA STI
+        <button class="wa-close" aria-label="Tutup" type="button">
+          &times;
+        </button>
+      </div>
+      <div class="wa-desc">
+        Butuh info atau ingin bertanya? Klik nomor di bawah untuk chat WhatsApp
+        admin HIMA Prodi STI.
+      </div>
+      <div class="wa-action d-flex flex-column gap-2">
+        <a
+          href="https://wa.me/6285236398673?text=Halo%20HIMA%20STI%2C%20saya%20ingin%20bertanya..."
+          target="_blank"
+          rel="noopener"
+          class="wa-chat-btn d-flex align-items-center gap-2"
+        >
+          <i class="fab fa-whatsapp"></i>
+          <span>
+            <small>Ketua Umum</small>
+          </span>
+        </a>
+        <a
+          href="https://wa.me/6285227821434?text=Halo%20HIMA%20STI%2C%20saya%20ingin%20bertanya..."
+          target="_blank"
+          rel="noopener"
+          class="wa-chat-btn d-flex align-items-center gap-2"
+        >
+          <i class="fab fa-whatsapp"></i>
+          <span>
+            <small>Sekretaris Umum</small>
+          </span>
+        </a>
+      </div>
+    </div>
+    <script>
+      const waBtn = document.getElementById("waPopupBtn");
+      const waBox = document.getElementById("waPopupBox");
+      const waClose = waBox.querySelector(".wa-close");
+      // Agar klik pada icon di dalam tombol juga membuka popup
+      waBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        waBox.style.display = waBox.style.display === "flex" ? "none" : "flex";
+      });
+      waClose.addEventListener("click", function (e) {
+        e.stopPropagation();
+        waBox.style.display = "none";
+      });
+      document.addEventListener("click", function (e) {
+        if (
+          waBox.style.display === "flex" &&
+          !waBox.contains(e.target) &&
+          !waBtn.contains(e.target)
+        ) {
+          waBox.style.display = "none";
+        }
+      });
+    </script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- WP Posts Loader -->
+    <script src="assets/js/wp-posts.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/index.js"></script>
+  </body>
+</html>
