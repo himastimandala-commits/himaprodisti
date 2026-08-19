@@ -1,761 +1,2191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>HIMASTI | Struktur Organisasi</title>
+    <link rel="icon" href="assets/img/himastilogo.png" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>HIMA PRODI STI</title>
-  <link rel="icon" href="assets/img/logo.png" />
-  <style>
-    @import url("assets/css/index.css");
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-    /* =========================
-         BACK TO TOP BUTTON
-      ========================= */
-    #backToTop {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: none;
-      background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
-      color: #fff;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-      transition: all 0.3s ease;
-      z-index: 9999;
-    }
-
-    #backToTop:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.45);
-    }
-
-    #backToTop.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 576px) {
-      #backToTop {
-        width: 42px;
-        height: 42px;
-        font-size: 16px;
-        bottom: 18px;
-        right: 18px;
+    <style>
+      /* ============================================================
+           RESET & BASE
+           ============================================================ */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-    }
-  </style>
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- AOS -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+      body {
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        transition:
+          background 0.5s ease,
+          color 0.5s ease;
+        overflow-x: hidden;
+      }
 
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="assets/css/struktur.css" />
-</head>
+      body[data-theme="light"] {
+        background: #f8fafc;
+        color: #1e293b;
+      }
 
-<body data-theme="light">
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg nav-glass sticky-top shadow-sm bg-white"
-    style="backdrop-filter: blur(8px); border-bottom: 1px solid #e9ecef">
-    <div class="container py-2">
-      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold fs-5" href="#">
-        <img src="assets/img/logo.png" class="brand-badge shadow-sm" alt="Logo"
-          style="width: 38px; height: 38px; border-radius: 10px" />
-        <span class="text-primary">HIMA PRODI STI</span>
-      </a>
-      <div class="d-flex align-items-center gap-3">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
-          aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      body[data-theme="dark"] {
+        background: #0f172a;
+        color: #f1f5f9;
+      }
+
+      /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #e2e8f0;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #2563eb, #38bdf8);
+        border-radius: 4px;
+      }
+      body[data-theme="dark"] ::-webkit-scrollbar-track {
+        background: #1e293b;
+      }
+
+      /* ============================================================
+           NAVBAR
+           ============================================================ */
+      .nav-glass {
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        transition: all 0.4s ease;
+        border-bottom: 1px solid rgba(37, 99, 235, 0.15);
+      }
+
+      body[data-theme="dark"] .nav-glass {
+        background: rgba(15, 23, 42, 0.85) !important;
+        border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+      }
+
+      body[data-theme="light"] .nav-glass {
+        background: rgba(255, 255, 255, 0.85) !important;
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #2563eb, #38bdf8);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 60%;
+      }
+
+      .nav-link:hover {
+        color: #2563eb !important;
+      }
+
+      body[data-theme="dark"] .nav-link {
+        color: #e2e8f0 !important;
+      }
+
+      body[data-theme="dark"] .nav-link:hover {
+        color: #60a5fa !important;
+      }
+
+      .theme-toggle {
+        transition: all 0.4s ease;
+        background: #e2e8f0;
+        border: none;
+      }
+
+      .theme-toggle:hover {
+        transform: rotate(30deg) scale(1.1);
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      }
+
+      body[data-theme="dark"] .theme-toggle {
+        background: #334155;
+        color: #f1f5f9;
+      }
+
+      body[data-theme="dark"] .theme-toggle:hover {
+        background: #475569;
+        box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+      }
+
+      /* ============================================================
+           HEADER ANIMATION
+           ============================================================ */
+      .header-gradient-text {
+        background: linear-gradient(
+          135deg,
+          #2563eb 0%,
+          #38bdf8 50%,
+          #2563eb 100%
+        );
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmerText 4s ease-in-out infinite;
+      }
+
+      @keyframes shimmerText {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .header-subtitle {
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+
+      .header-subtitle span {
+        display: inline-block;
+        background: linear-gradient(135deg, #2563eb, #38bdf8);
+        padding: 4px 20px;
+        border-radius: 50px;
+        color: #fff;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .floating-shapes {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.06;
+        animation: floatShape 20s ease-in-out infinite;
+      }
+
+      .shape:nth-child(1) {
+        width: 300px;
+        height: 300px;
+        background: #2563eb;
+        top: -50px;
+        right: -50px;
+        animation-delay: 0s;
+      }
+
+      .shape:nth-child(2) {
+        width: 200px;
+        height: 200px;
+        background: #38bdf8;
+        bottom: 100px;
+        left: -80px;
+        animation-delay: -5s;
+        animation-duration: 25s;
+      }
+
+      .shape:nth-child(3) {
+        width: 150px;
+        height: 150px;
+        background: #8b5cf6;
+        top: 50%;
+        left: 50%;
+        animation-delay: -10s;
+        animation-duration: 30s;
+      }
+
+      @keyframes floatShape {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+        25% {
+          transform: translate(50px, -30px) scale(1.1) rotate(90deg);
+        }
+        50% {
+          transform: translate(-20px, 50px) scale(0.9) rotate(180deg);
+        }
+        75% {
+          transform: translate(30px, -20px) scale(1.05) rotate(270deg);
+        }
+      }
+
+      /* ============================================================
+           ORGANIZATION CARDS
+           ============================================================ */
+      .org-card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 24px;
+        padding: 1.75rem 1.25rem;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
+      }
+
+      .org-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #2563eb, #38bdf8, #8b5cf6, #2563eb);
+        background-size: 300% 100%;
+        animation: gradientBar 4s ease-in-out infinite;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .org-card:hover::before {
+        opacity: 1;
+      }
+
+      @keyframes gradientBar {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .org-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
+        border-color: rgba(37, 99, 235, 0.3);
+      }
+
+      body[data-theme="dark"] .org-card {
+        background: rgba(30, 41, 59, 0.9);
+        border-color: rgba(56, 189, 248, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      body[data-theme="dark"] .org-card:hover {
+        box-shadow: 0 20px 60px rgba(56, 189, 248, 0.1);
+        border-color: rgba(56, 189, 248, 0.3);
+      }
+
+      .org-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #fff;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+        transition: all 0.4s ease;
+        cursor: pointer;
+      }
+
+      .org-card img:hover {
+        transform: scale(1.08) rotate(-3deg);
+        box-shadow: 0 8px 40px rgba(37, 99, 235, 0.4);
+      }
+
+      body[data-theme="dark"] .org-card img {
+        border-color: #1e293b;
+      }
+
+      .org-role {
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #2563eb;
+        margin-top: 0.75rem;
+        display: inline-block;
+        background: rgba(37, 99, 235, 0.1);
+        padding: 2px 16px;
+        border-radius: 50px;
+      }
+
+      body[data-theme="dark"] .org-role {
+        color: #60a5fa;
+        background: rgba(96, 165, 250, 0.1);
+      }
+
+      .org-name {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #0f172a;
+        margin-top: 0.25rem;
+        line-height: 1.3;
+      }
+
+      body[data-theme="dark"] .org-name {
+        color: #f1f5f9;
+      }
+
+      .org-meta {
+        font-size: 0.8rem;
+        color: #64748b;
+        font-weight: 500;
+      }
+
+      body[data-theme="dark"] .org-meta {
+        color: #94a3b8;
+      }
+
+      /* ============================================================
+           MEMBER ITEMS
+           ============================================================ */
+      .member-item {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 14px;
+        transition: all 0.3s ease;
+        cursor: default;
+        background: rgba(37, 99, 235, 0.02);
+      }
+
+      .member-item:hover {
+        background: rgba(37, 99, 235, 0.06);
+        transform: translateX(4px);
+      }
+
+      body[data-theme="dark"] .member-item {
+        background: rgba(56, 189, 248, 0.02);
+      }
+
+      body[data-theme="dark"] .member-item:hover {
+        background: rgba(56, 189, 248, 0.06);
+      }
+
+      .member-item img {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #e2e8f0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .member-item img:hover {
+        transform: scale(1.1);
+        border-color: #2563eb;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.25);
+      }
+
+      body[data-theme="dark"] .member-item img {
+        border-color: #334155;
+      }
+
+      body[data-theme="dark"] .member-item img:hover {
+        border-color: #60a5fa;
+      }
+
+      .member-name {
+        font-weight: 600;
+        font-size: 0.88rem;
+        line-height: 1.2;
+        color: #0f172a;
+      }
+
+      body[data-theme="dark"] .member-name {
+        color: #f1f5f9;
+      }
+
+      .member-nim {
+        font-size: 0.78rem;
+        line-height: 1.2;
+        color: #64748b;
+      }
+
+      body[data-theme="dark"] .member-nim {
+        color: #94a3b8;
+      }
+
+      .member-role {
+        font-size: 0.72rem;
+        line-height: 1.2;
+        color: #2563eb;
+        font-weight: 500;
+      }
+
+      body[data-theme="dark"] .member-role {
+        color: #60a5fa;
+      }
+
+      .section-title {
+        position: relative;
+        display: inline-block;
+        font-size: 2.2rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #2563eb, #38bdf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, #2563eb, #38bdf8);
+        border-radius: 4px;
+        transform: translateX(-50%);
+      }
+
+      /* ============================================================
+           DIVIDER
+           ============================================================ */
+      .divider-wave {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin: 2rem 0;
+      }
+
+      .divider-wave .line {
+        flex: 1;
+        max-width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #2563eb, transparent);
+      }
+
+      .divider-wave .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #2563eb;
+        animation: pulseDot 2s ease-in-out infinite;
+      }
+
+      .divider-wave .dot:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .divider-wave .dot:nth-child(5) {
+        animation-delay: 0.6s;
+      }
+
+      @keyframes pulseDot {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.6);
+          opacity: 0.4;
+        }
+      }
+
+      /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+      #backToTop {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 8px 32px rgba(37, 99, 235, 0.35);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px) scale(0.8);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 9999;
+      }
+
+      #backToTop:hover {
+        transform: scale(1.12) translateY(-4px);
+        box-shadow: 0 16px 48px rgba(37, 99, 235, 0.5);
+      }
+
+      #backToTop.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+
+      @media (max-width: 576px) {
+        #backToTop {
+          width: 44px;
+          height: 44px;
+          font-size: 16px;
+          bottom: 18px;
+          right: 18px;
+        }
+      }
+
+      /* ============================================================
+           FOOTER
+           ============================================================ */
+      .footer {
+        background: linear-gradient(
+          135deg,
+          #1a2a6c 0%,
+          #2563eb 50%,
+          #38bdf8 100%
+        );
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 600px;
+        height: 600px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 50%;
+        animation: floatFooter 20s ease-in-out infinite;
+      }
+
+      @keyframes floatFooter {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(-80px, 40px) scale(1.2);
+        }
+      }
+
+      .footer a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .footer a:hover {
+        color: #fff;
+        transform: translateX(4px);
+      }
+
+      .footer hr {
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+
+      /* ============================================================
+           MODAL
+           ============================================================ */
+      .modal-content {
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+      }
+
+      body[data-theme="dark"] .modal-content {
+        background: rgba(30, 41, 59, 0.95);
+        border-color: rgba(56, 189, 248, 0.1);
+      }
+
+      body[data-theme="dark"] .modal-content .btn-close {
+        filter: invert(1);
+      }
+
+      /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+      @media (max-width: 768px) {
+        .org-card {
+          padding: 1.25rem 0.75rem;
+          max-width: 100%;
+        }
+
+        .org-card img {
+          width: 80px;
+          height: 80px;
+        }
+
+        .section-title {
+          font-size: 1.6rem;
+        }
+
+        .header-subtitle span {
+          font-size: 0.8rem;
+          padding: 3px 14px;
+        }
+
+        .member-item {
+          padding: 6px 8px;
+        }
+
+        .member-item img {
+          width: 36px;
+          height: 36px;
+          min-width: 36px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .org-card img {
+          width: 72px;
+          height: 72px;
+        }
+
+        .org-name {
+          font-size: 0.9rem;
+        }
+
+        .org-role {
+          font-size: 0.65rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body data-theme="light">
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav
+      class="navbar navbar-expand-lg nav-glass sticky-top shadow-sm"
+      style="position: relative; z-index: 1000"
+    >
+      <div class="container py-2">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2 fw-bold fs-5"
+          href="#"
+        >
+          <img
+            src="assets/img/himastilogo.png"
+            alt="Logo"
+            style="
+              width: 38px;
+              height: 38px;
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+              transition: transform 0.3s ease;
+            "
+          />
+          <span class="header-gradient-text" style="font-size: 1.25rem"
+            >HIMASTI</span
+          >
+        </a>
+
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto gap-lg-3">
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="index.html#home"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="index.html#about"
+                >Tentang</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="index.html#divisi"
+                >Divisi</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="index.html#kegiatan"
+                >Kegiatan</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link fw-semibold px-3 dropdown-toggle active"
+                href="#"
+                id="strukturDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Struktur &amp; Anggota
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="strukturDropdown">
+                <li>
+                  <a class="dropdown-item active" href="struktur.html"
+                    >Struktur Organisasi</a
+                  >
+                </li>
+                <li><a class="dropdown-item" href="#anggota">Anggota</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link fw-semibold px-3 dropdown-toggle"
+                href="#"
+                id="beritaDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Informasi
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="beritaDropdown">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://himaprodisti.wordpress.com/category/berita/"
+                    target="_blank"
+                    >Berita</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://himaprodisti.wordpress.com/category/artikel/"
+                    target="_blank"
+                    >Artikel</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://himaprodisti.wordpress.com/category/opini/"
+                    target="_blank"
+                    >Opini</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://himaprodisti.wordpress.com/category/prestasi/"
+                    target="_blank"
+                    >Prestasi</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3" href="#kontak">Kontak</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="ms-lg-3 mt-2 mt-lg-0 d-flex align-items-center gap-2">
+          <button
+            class="theme-toggle btn rounded-circle"
+            id="themeToggle"
+            style="width: 40px; height: 40px"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
       </div>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto gap-lg-3">
-          <li class="nav-item">
-            <a class="nav-link fw-semibold px-3" href="index.html#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-semibold px-3" href="index.html#about">Tentang</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-semibold px-3" href="index.html#divisi">Divisi</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-semibold px-3" href="index.html#kegiatan">Kegiatan</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link fw-semibold px-3 dropdown-toggle" href="index.html#struktur" id="strukturDropdown"
-              role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Struktur & Anggota
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="strukturDropdown">
-              <li>
-                <a class="dropdown-item" href="struktur.html">Struktur Organisasi</a>
+    </nav>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main
+      class="container-fluid my-5 px-3 px-lg-5"
+      style="max-width: 1450px; margin: 0 auto; position: relative; z-index: 1"
+    >
+      <!-- ========== HEADER ========== -->
+      <header
+        class="mb-5 text-center"
+        data-aos="fade-down"
+        data-aos-duration="1000"
+      >
+        <h1
+          class="display-5 fw-bold mb-3 header-gradient-text"
+          style="font-size: 2.8rem"
+        >
+          STRUKTUR KEPENGURUSAN
+        </h1>
+        <div class="header-subtitle">
+          <h2 class="fw-bold mb-1" style="color: #2563eb; font-size: 1.6rem">
+            HIMPUNAN MAHASISWA SISTEM DAN TEKNOLOGI INFORMASI
+          </h2>
+          <h1
+            class="display-5 fw-bold mb-3 header-gradient-text"
+            style="font-size: 2.8rem"
+            style="color: #2563eb; font-size: 1.4rem"
+          >
+            HIMASTI
+          </h1>
+          <span>Periode 2025 – 2026</span>
+        </div>
+        <div class="divider-wave">
+          <span class="line"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="line"></span>
+        </div>
+      </header>
+
+      <!-- ========== PEMBINA ========== -->
+      <div
+        class="row justify-content-center mb-5"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-delay="100"
+      >
+        <div
+          class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex justify-content-center"
+        >
+          <div
+            class="org-card shadow-sm"
+            style="
+              max-width: 320px;
+              border-color: rgba(37, 99, 235, 0.2);
+              border-width: 2px;
+            "
+          >
+            <div class="text-center">
+              <img
+                src="assets/img/rohim.jpeg"
+                alt="Foto Pembina"
+                onerror="
+                  this.onerror = null;
+                  this.src = 'https://via.placeholder.com/120x120?text=📚';
+                "
+                data-bs-toggle="modal"
+                data-bs-target="#photoModal"
+                data-name="Pembina: Muhamat Abdul Rohim, S.Kom., M.Si."
+                style="
+                  width: 120px;
+                  height: 120px;
+                  border: 4px solid #2563eb;
+                  padding: 3px;
+                "
+              />
+              <div class="mt-2">
+                <span
+                  class="org-role"
+                  style="
+                    background: rgba(37, 99, 235, 0.15);
+                    font-size: 0.8rem;
+                    padding: 4px 20px;
+                  "
+                >
+                  <i class="fas fa-user-graduate me-1"></i> Pembina
+                </span>
+              </div>
+              <h4
+                class="org-name mt-2"
+                style="font-size: 1.05rem; line-height: 1.4; font-weight: 700"
+              >
+                Muhamat Abdul Rohim, S.Kom., M.Si.
+              </h4>
+              <p class="org-meta" style="font-size: 0.85rem; color: #64748b">
+                <i class="fas fa-university me-1"></i> Dosen Pembina
+              </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== KETUA UMUM ========== -->
+      <div
+        class="row justify-content-center mb-5"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-delay="200"
+      >
+        <div
+          class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex justify-content-center"
+        >
+          <div
+            class="org-card shadow-sm"
+            style="
+              max-width: 320px;
+              border-color: rgba(37, 99, 235, 0.3);
+              border-width: 2px;
+              background: linear-gradient(
+                135deg,
+                rgba(37, 99, 235, 0.05),
+                rgba(56, 189, 248, 0.05)
+              );
+            "
+          >
+            <div class="text-center">
+              <div style="position: relative; display: inline-block">
+                <img
+                  src="assets/img/zulfan.jpeg"
+                  alt="Foto Ketua Umum"
+                  onerror="
+                    this.onerror = null;
+                    this.src = 'https://via.placeholder.com/120x120?text=👤';
+                  "
+                  data-bs-toggle="modal"
+                  data-bs-target="#photoModal"
+                  data-name="Ketua Umum: MOHAMMAD ZULFAN SYAFIQI"
+                  style="
+                    width: 120px;
+                    height: 120px;
+                    border: 4px solid #2563eb;
+                    padding: 3px;
+                  "
+                />
+
+              </div>
+              <div class="mt-2">
+                <span
+                  class="org-role"
+                  style="
+                    background: rgba(37, 99, 235, 0.15);
+                    font-size: 0.8rem;
+                    padding: 4px 20px;
+                  "
+                >
+                  <i class="fas fa-user-tie me-1"></i> Ketua Umum
+                </span>
+              </div>
+              <h4
+                class="org-name mt-2"
+                style="font-size: 1.05rem; line-height: 1.4; font-weight: 700"
+              >
+                MOHAMMAD ZULFAN SYAFIQI
+              </h4>
+              <p class="org-meta" style="font-size: 0.85rem">NIM : 23060022</p>
+              <p
+                class="org-meta"
+                style="font-size: 0.8rem; color: #2563eb; font-weight: 600"
+              >
+                <i class="fas fa-bullseye me-1"></i> Koordinator Organisasi
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SEKRETARIS & BENDAHARA ========== -->
+      <div class="row justify-content-center mb-5 g-4">
+        <div
+          class="col-12 col-sm-6 col-md-5 col-lg-4 d-flex justify-content-center"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="300"
+        >
+          <div class="org-card shadow-sm" style="max-width: 300px; width: 100%">
+            <div class="text-center">
+              <img
+                src="assets/img/tiara.jpeg"
+                alt="Foto Sekretaris Umum"
+                onerror="
+                  this.onerror = null;
+                  this.src = 'https://via.placeholder.com/110x110?text=📝';
+                "
+                data-bs-toggle="modal"
+                data-bs-target="#photoModal"
+                data-name="Sekretaris Umum: Tiara Maharani"
+                style="
+                  width: 110px;
+                  height: 110px;
+                  border: 3px solid #38bdf8;
+                  padding: 3px;
+                "
+              />
+              <div class="mt-2">
+                <span
+                  class="org-role"
+                  style="
+                    background: rgba(56, 189, 248, 0.15);
+                    font-size: 0.75rem;
+                    padding: 4px 16px;
+                  "
+                >
+                  <i class="fas fa-file-alt me-1"></i> Sekretaris Umum
+                </span>
+              </div>
+              <h5
+                class="org-name mt-2"
+                style="font-size: 1rem; line-height: 1.4; font-weight: 700"
+              >
+                Tiara Maharani
+              </h5>
+              <p class="org-meta" style="font-size: 0.8rem">NIM : 24060054</p>
+              <p
+                class="org-meta"
+                style="font-size: 0.75rem; color: #38bdf8; font-weight: 600"
+              >
+                <i class="fas fa-tasks me-1"></i> Koordinasi Administrasi
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-12 col-sm-6 col-md-5 col-lg-4 d-flex justify-content-center"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="400"
+        >
+          <div class="org-card shadow-sm" style="max-width: 300px; width: 100%">
+            <div class="text-center">
+              <img
+                src="assets/img/naila.jpeg"
+                alt="Foto Bendahara"
+                onerror="
+                  this.onerror = null;
+                  this.src = 'https://via.placeholder.com/110x110?text=💰';
+                "
+                data-bs-toggle="modal"
+                data-bs-target="#photoModal"
+                data-name="Bendahara: Naila Zulfa Armelia"
+                style="
+                  width: 110px;
+                  height: 110px;
+                  border: 3px solid #f59e0b;
+                  padding: 3px;
+                "
+              />
+              <div class="mt-2">
+                <span
+                  class="org-role"
+                  style="
+                    background: rgba(245, 158, 11, 0.15);
+                    font-size: 0.75rem;
+                    padding: 4px 16px;
+                    color: #f59e0b;
+                  "
+                >
+                  <i class="fas fa-coins me-1"></i> Bendahara
+                </span>
+              </div>
+              <h5
+                class="org-name mt-2"
+                style="font-size: 1rem; line-height: 1.4; font-weight: 700"
+              >
+                Naila Zulfa Armelia
+              </h5>
+              <p class="org-meta" style="font-size: 0.8rem">NIM : 24060005</p>
+              <p
+                class="org-meta"
+                style="font-size: 0.75rem; color: #f59e0b; font-weight: 600"
+              >
+                <i class="fas fa-calculator me-1"></i> Keuangan &amp; Pembukuan
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== DIVISI ========== -->
+      <section class="mb-5">
+        <div
+          class="text-center mb-5"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <h2 class="section-title">DIVISI - DIVISI</h2>
+          <p class="text-muted mt-2" style="font-size: 1rem; font-weight: 500">
+            <i class="fas fa-users me-2" style="color: #2563eb"></i> Bidang Kepengurusan HIMASTI Periode
+            2025-2026
+          </p>
+        </div>
+
+        <div class="row justify-content-center g-4">
+          <!-- SDM -->
+          <div
+            class="col-12 col-md-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="100"
+          >
+            <div
+              class="org-card shadow-sm h-100"
+              style="padding: 1.75rem 1.25rem; max-width: 100%"
+            >
+              <div class="text-center">
+                <img
+                  src="assets/img/anggi.jpeg"
+                  alt="Foto Kabid SDM"
+                  onerror="
+                    this.onerror = null;
+                    this.src = 'https://via.placeholder.com/100x100?text=👥';
+                  "
+                  data-bs-toggle="modal"
+                  data-bs-target="#photoModal"
+                  data-name="Kabid SDM: Pritha Widya Anggita"
+                  style="
+                    width: 100px;
+                    height: 100px;
+                    border: 3px solid #8b5cf6;
+                    padding: 2px;
+                  "
+                />
+                <div class="mt-2">
+                  <span
+                    class="org-role"
+                    style="
+                      background: rgba(139, 92, 246, 0.15);
+                      font-size: 0.75rem;
+                      padding: 4px 16px;
+                      color: #8b5cf6;
+                    "
+                  >
+                    <i class="fas fa-users-cog me-1"></i> Kabid SDM
+                  </span>
+                </div>
+                <h5
+                  class="org-name mt-2"
+                  style="font-size: 0.95rem; line-height: 1.3; font-weight: 700"
+                >
+                  Pritha Widya Anggita
+                </h5>
+                <p class="org-meta" style="font-size: 0.78rem">
+                  NIM : 24060039
+                </p>
+                <p
+                  class="org-meta"
+                  style="font-size: 0.75rem; color: #8b5cf6; font-weight: 600"
+                >
+                  <i class="fas fa-handshake me-1"></i> Pengelolaan Sumber Daya
+                </p>
+              </div>
+
+              <hr
+                style="
+                  width: 60%;
+                  margin: 1rem auto;
+                  border-color: rgba(139, 92, 246, 0.15);
+                "
+              />
+
+              <div class="member-list">
+                <h6
+                  class="text-center fw-bold mb-3"
+                  style="font-size: 0.85rem; color: #8b5cf6"
+                >
+                  <i class="fas fa-user-friends me-1"></i> Anggota SDM
+                </h6>
+
+                <!-- Member 1 -->
+                <div
+                  class="member-item d-flex align-items-center"
+                  style="gap: 12px; padding: 10px 12px; border-radius: 12px"
+                >
+                  <img
+                    src="assets/img/salsa.jpeg"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://via.placeholder.com/44?text=S';
+                    "
+                    alt="Salsa Ramadhani"
+                    data-bs-toggle="modal"
+                    data-bs-target="#photoModal"
+                    data-name="Anggota SDM: Salsa Ramadhani"
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      min-width: 44px;
+                      border: 2px solid #8b5cf6;
+                    "
+                  />
+                  <div style="flex: 1; min-width: 0; text-align: left">
+                    <div
+                      class="member-name"
+                      style="font-size: 0.85rem; font-weight: 600"
+                    >
+                      Salsa Ramadhani
+                    </div>
+                    <div class="member-nim" style="font-size: 0.7rem">
+                      NIM : 24060002
+                    </div>
+                    <div
+                      class="member-role"
+                      style="font-size: 0.65rem; color: #8b5cf6"
+                    >
+                      <i class="fas fa-user-plus me-1"></i> Koordinator
+                      Rekrutmen
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div
+                  class="member-item d-flex align-items-center"
+                  style="gap: 12px; padding: 10px 12px; border-radius: 12px"
+                >
+                  <img
+                    src="assets/img/captain.jpeg"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://via.placeholder.com/44?text=A';
+                    "
+                    alt="Alvius Jonathan Denis K."
+                    data-bs-toggle="modal"
+                    data-bs-target="#photoModal"
+                    data-name="Anggota SDM: Alvius Jonathan Denis K."
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      min-width: 44px;
+                      border: 2px solid #8b5cf6;
+                    "
+                  />
+                  <div style="flex: 1; min-width: 0; text-align: left">
+                    <div
+                      class="member-name"
+                      style="font-size: 0.85rem; font-weight: 600"
+                    >
+                      Alvius Jonathan Denis K.
+                    </div>
+                    <div class="member-nim" style="font-size: 0.7rem">
+                      NIM : 24060013
+                    </div>
+                    <div
+                      class="member-role"
+                      style="font-size: 0.65rem; color: #8b5cf6"
+                    >
+                      <i class="fas fa-clipboard-list me-1"></i> Administrasi
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div
+                  class="member-item d-flex align-items-center"
+                  style="gap: 12px; padding: 10px 12px; border-radius: 12px"
+                >
+                  <img
+                    src="assets/img/hanif.jpeg"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://via.placeholder.com/44?text=H';
+                    "
+                    alt="Hanif Dhiya'ulhaq"
+                    data-bs-toggle="modal"
+                    data-bs-target="#photoModal"
+                    data-name="Anggota SDM: Hanif Dhiya'ulhaq"
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      min-width: 44px;
+                      border: 2px solid #8b5cf6;
+                    "
+                  />
+                  <div style="flex: 1; min-width: 0; text-align: left">
+                    <div
+                      class="member-name"
+                      style="font-size: 0.85rem; font-weight: 600"
+                    >
+                      Hanif Dhiya'ulhaq
+                    </div>
+                    <div class="member-nim" style="font-size: 0.7rem">
+                      NIM : 24060038
+                    </div>
+                    <div
+                      class="member-role"
+                      style="font-size: 0.65rem; color: #8b5cf6"
+                    >
+                      <i class="fas fa-chart-line me-1"></i> Pengembangan SDM
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INFOKOM -->
+          <div
+            class="col-12 col-md-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="200"
+          >
+            <div
+              class="org-card shadow-sm h-100"
+              style="padding: 1.75rem 1.25rem; max-width: 100%"
+            >
+              <div class="text-center">
+                <img
+                  src="assets/img/irfandi.png"
+                  alt="Foto Kabid INFOKOM"
+                  onerror="
+                    this.onerror = null;
+                    this.src = 'https://via.placeholder.com/100x100?text=📡';
+                  "
+                  data-bs-toggle="modal"
+                  data-bs-target="#photoModal"
+                  data-name="Kabid INFOKOM: Moh.Irfandi"
+                  style="
+                    width: 100px;
+                    height: 100px;
+                    border: 3px solid #06b6d4;
+                    padding: 2px;
+                  "
+                />
+                <div class="mt-2">
+                  <span
+                    class="org-role"
+                    style="
+                      background: rgba(6, 182, 212, 0.15);
+                      font-size: 0.75rem;
+                      padding: 4px 16px;
+                      color: #06b6d4;
+                    "
+                  >
+                    <i class="fas fa-broadcast me-1"></i> Kabid INFOKOM
+                  </span>
+                </div>
+                <h5
+                  class="org-name mt-2"
+                  style="font-size: 0.95rem; line-height: 1.3; font-weight: 700"
+                >
+                  Moh. Irfandi
+                </h5>
+                <p class="org-meta" style="font-size: 0.78rem">
+                  NIM : 24060058
+                </p>
+                <p
+                  class="org-meta"
+                  style="font-size: 0.75rem; color: #06b6d4; font-weight: 600"
+                >
+                  <i class="fas fa-share-alt me-1"></i> Informasi &amp;
+                  Komunikasi
+                </p>
+              </div>
+
+              <hr
+                style="
+                  width: 60%;
+                  margin: 1rem auto;
+                  border-color: rgba(6, 182, 212, 0.15);
+                "
+              />
+
+              <div class="member-list">
+                <h6
+                  class="text-center fw-bold mb-3"
+                  style="font-size: 0.85rem; color: #06b6d4"
+                >
+                  <i class="fas fa-user-friends me-1"></i> Anggota INFOKOM
+                </h6>
+
+                <!-- Member 1 -->
+                <div
+                  class="member-item d-flex align-items-center"
+                  style="gap: 12px; padding: 10px 12px; border-radius: 12px"
+                >
+                  <img
+                    src="assets/img/jane.jpeg"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://via.placeholder.com/44?text=J';
+                    "
+                    alt="Jane Gwenogia Jandoko"
+                    data-bs-toggle="modal"
+                    data-bs-target="#photoModal"
+                    data-name="Anggota INFOKOM: Jane Gwenogia Jandoko"
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      min-width: 44px;
+                      border: 2px solid #06b6d4;
+                    "
+                  />
+                  <div style="flex: 1; min-width: 0; text-align: left">
+                    <div
+                      class="member-name"
+                      style="font-size: 0.85rem; font-weight: 600"
+                    >
+                      Jane Gwenogia Jandoko
+                    </div>
+                    <div class="member-nim" style="font-size: 0.7rem">
+                      NIM : 24060017
+                    </div>
+                    <div
+                      class="member-role"
+                      style="font-size: 0.65rem; color: #06b6d4"
+                    >
+                      <i class="fas fa-globe me-1"></i> Website &amp; Media
+                      Sosial
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div
+                  class="member-item d-flex align-items-center"
+                  style="gap: 12px; padding: 10px 12px; border-radius: 12px"
+                >
+                  <img
+                    src="assets/img/24060010.jpg"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://via.placeholder.com/44?text=A';
+                    "
+                    alt="Adhityanes Hizkia A. W."
+                    data-bs-toggle="modal"
+                    data-bs-target="#photoModal"
+                    data-name="Anggota INFOKOM: Adhityanes Hizkia A. W."
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      min-width: 44px;
+                      border: 2px solid #06b6d4;
+                    "
+                  />
+                  <div style="flex: 1; min-width: 0; text-align: left">
+                    <div
+                      class="member-name"
+                      style="font-size: 0.85rem; font-weight: 600"
+                    >
+                      Adhityanes Hizkia A. W.
+                    </div>
+                    <div class="member-nim" style="font-size: 0.7rem">
+                      NIM : 24060010
+                    </div>
+                    <div
+                      class="member-role"
+                      style="font-size: 0.65rem; color: #06b6d4"
+                    >
+                      <i class="fas fa-paint-brush me-1"></i> Desain &amp;
+                      Multimedia
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div
+                  class="member-item d-flex align-items-center"
+                  style="gap: 12px; padding: 10px 12px; border-radius: 12px"
+                >
+                  <img
+                    src="assets/img/putri.jpeg"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://via.placeholder.com/44?text=P';
+                    "
+                    alt="Putri Ayu"
+                    data-bs-toggle="modal"
+                    data-bs-target="#photoModal"
+                    data-name="Anggota INFOKOM: Putri Ayu"
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      min-width: 44px;
+                      border: 2px solid #06b6d4;
+                    "
+                  />
+                  <div style="flex: 1; min-width: 0; text-align: left">
+                    <div
+                      class="member-name"
+                      style="font-size: 0.85rem; font-weight: 600"
+                    >
+                      Putri Ayu
+                    </div>
+                    <div class="member-nim" style="font-size: 0.7rem">
+                      NIM : 24060034
+                    </div>
+                    <div
+                      class="member-role"
+                      style="font-size: 0.65rem; color: #06b6d4"
+                    >
+                      <i class="fas fa-newspaper me-1"></i> Publikasi &amp;
+                      Dokumentasi
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LITBANG -->
+          <div
+            class="col-12 col-md-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="300"
+          >
+            <div
+              class="org-card shadow-sm h-100"
+              style="padding: 1.75rem 1.25rem; max-width: 100%"
+            >
+              <div class="text-center">
+                <img
+                  src="assets/img/nabila.jpeg"
+                  alt="Foto Kabid LITBANG"
+                  onerror="
+                    this.onerror = null;
+                    this.src = 'https://via.placeholder.com/100x100?text=🔬';
+                  "
+                  data-bs-toggle="modal"
+                  data-bs-target="#photoModal"
+                  data-name="Kabid LITBANG: Nabila Ainnur Rohmah"
+                  style="
+                    width: 100px;
+                    height: 100px;
+                    border: 3px solid #10b981;
+                    padding: 2px;
+                  "
+                />
+                <div class="mt-2">
+                  <span
+                    class="org-role"
+                    style="
+                      background: rgba(16, 185, 129, 0.15);
+                      font-size: 0.75rem;
+                      padding: 4px 16px;
+                      color: #10b981;
+                    "
+                  >
+                    <i class="fas fa-flask me-1"></i> Kabid LITBANG
+                  </span>
+                </div>
+                <h5
+                  class="org-name mt-2"
+                  style="font-size: 0.95rem; line-height: 1.3; font-weight: 700"
+                >
+                  Nabila Ainnur Rohmah
+                </h5>
+                <p class="org-meta" style="font-size: 0.78rem">
+                  NIM : 24060015
+                </p>
+                <p
+                  class="org-meta"
+                  style="font-size: 0.75rem; color: #10b981; font-weight: 600"
+                >
+                  <i class="fas fa-microscope me-1"></i> Penelitian &amp;
+                  Pengembangan
+                </p>
+              </div>
+
+              <hr
+                style="
+                  width: 60%;
+                  margin: 1rem auto;
+                  border-color: rgba(16, 185, 129, 0.15);
+                "
+              />
+
+              <div class="member-list">
+                <h6
+                  class="text-center fw-bold mb-3"
+                  style="font-size: 0.85rem; color: #10b981"
+                >
+                  <i class="fas fa-user-friends me-1"></i> Anggota LITBANG
+                </h6>
+
+                <!-- Member 1 -->
+                <div
+                  class="member-item d-flex align-items-center"
+                  style="gap: 12px; padding: 10px 12px; border-radius: 12px"
+                >
+                  <img
+                    src="assets/img/abdis.jpeg"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://via.placeholder.com/44?text=A';
+                    "
+                    alt="Abdis Shahid Al Amin"
+                    data-bs-toggle="modal"
+                    data-bs-target="#photoModal"
+                    data-name="Anggota LITBANG: Abdis Shahid Al Amin"
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      min-width: 44px;
+                      border: 2px solid #10b981;
+                    "
+                  />
+                  <div style="flex: 1; min-width: 0; text-align: left">
+                    <div
+                      class="member-name"
+                      style="font-size: 0.85rem; font-weight: 600"
+                    >
+                      Abdis Shahid Al Amin
+                    </div>
+                    <div class="member-nim" style="font-size: 0.7rem">
+                      NIM : 24060011
+                    </div>
+                    <div
+                      class="member-role"
+                      style="font-size: 0.65rem; color: #10b981"
+                    >
+                      <i class="fas fa-file-alt me-1"></i> Riset &amp; Publikasi
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div
+                  class="member-item d-flex align-items-center"
+                  style="gap: 12px; padding: 10px 12px; border-radius: 12px"
+                >
+                  <img
+                    src="assets/img/rehan.jpeg"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://via.placeholder.com/44?text=R';
+                    "
+                    alt="Reyhan Catur Abdillah"
+                    data-bs-toggle="modal"
+                    data-bs-target="#photoModal"
+                    data-name="Anggota LITBANG: Reyhan Catur Abdillah"
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      min-width: 44px;
+                      border: 2px solid #10b981;
+                    "
+                  />
+                  <div style="flex: 1; min-width: 0; text-align: left">
+                    <div
+                      class="member-name"
+                      style="font-size: 0.85rem; font-weight: 600"
+                    >
+                      Reyhan Catur Abdillah
+                    </div>
+                    <div class="member-nim" style="font-size: 0.7rem">
+                      NIM : 24060033
+                    </div>
+                    <div
+                      class="member-role"
+                      style="font-size: 0.65rem; color: #10b981"
+                    >
+                      <i class="fas fa-chart-bar me-1"></i> Data &amp; Analisis
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div
+                  class="member-item d-flex align-items-center"
+                  style="gap: 12px; padding: 10px 12px; border-radius: 12px"
+                >
+                  <img
+                    src="assets/img/audrey.jpeg"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://via.placeholder.com/44?text=A';
+                    "
+                    alt="Audrey Kayla Firdaus A.H."
+                    data-bs-toggle="modal"
+                    data-bs-target="#photoModal"
+                    data-name="Anggota LITBANG: Audrey Kayla Firdaus A.H."
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      min-width: 44px;
+                      border: 2px solid #10b981;
+                    "
+                  />
+                  <div style="flex: 1; min-width: 0; text-align: left">
+                    <div
+                      class="member-name"
+                      style="font-size: 0.85rem; font-weight: 600"
+                    >
+                      Audrey Kayla Firdaus A.H.
+                    </div>
+                    <div class="member-nim" style="font-size: 0.7rem">
+                      NIM : 24060019
+                    </div>
+                    <div
+                      class="member-role"
+                      style="font-size: 0.65rem; color: #10b981"
+                    >
+                      <i class="fas fa-lightbulb me-1"></i> Inovasi Program
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+    PHOTO MODAL
+    ============================================================ -->
+    <div class="modal fade" id="photoModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0">
+          <div class="modal-body p-4 text-center">
+            <img
+              id="modalPhoto"
+              src=""
+              alt=""
+              style="
+                width: 140px;
+                height: 140px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 3px solid #2563eb;
+                padding: 4px;
+              "
+            />
+            <h5
+              id="modalCaption"
+              class="mt-3 mb-0 fw-bold"
+              style="color: #0f172a"
+            ></h5>
+            <button
+              type="button"
+              class="btn btn-primary btn-sm mt-3 px-4 rounded-pill"
+              data-bs-dismiss="modal"
+              style="
+                background: linear-gradient(135deg, #2563eb, #38bdf8);
+                border: none;
+              "
+            >
+              <i class="fas fa-times me-1"></i> Tutup
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+       <!-- =========================
+         FOOTER SECTION
+    ========================= -->
+    <footer
+      id="kontak"
+      class="footer py-5 border-0"
+      style="
+        background: linear-gradient(100deg, #2563eb 0%, #38bdf8 100%);
+        color: #fff;
+        box-shadow: 0 0 32px 0 rgba(37, 99, 235, 0.08);
+      "
+    >
+      <div class="container">
+        <div class="row g-4 align-items-start">
+          <!-- Info HIMA -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <img
+                src="assets/img/himastilogo.png"
+                class="brand-badge shadow"
+                alt="Logo"
+                style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 14px;
+                  background: #fff;
+                "
+              />
+              <span class="fw-bold fs-4" style="color: #fff">HIMASTI</span>
+            </div>
+            <p class="mb-3" style="color: #e0e7ef">
+              Himpunan Mahasiswa Sistem &amp; Teknologi Informasi<br />
+              Fakultas Sains, Teknologi, dan Industri<br />
+              Institut Teknologi dan Sains Mandala
+            </p>
+            <ul class="list-unstyled mb-2" style="color: #e0e7ef">
+              <li class="mb-1">
+                <i class="fas fa-envelope me-2 text-info"></i>
+                <a
+                  href="mailto:hmjsti.mandala@gmail.com"
+                  class="text-white text-decoration-none"
+                  >hmjsti.mandala@gmail.com</a
+                >
+              </li>
+              <li class="mb-1">
+                <i class="fas fa-phone me-2 text-info"></i>
+                <a
+                  href="tel:085236398673"
+                  class="text-white text-decoration-none"
+                  >085236398673</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" href="#anggota">Anggota</a>
+                <i class="fas fa-map-marker-alt me-2 text-info"></i>
+                <span style="color: #e0e7ef"
+                  >Jl. Sumatra No.118-120, Tegal Boto Lor, Sumbersari, Kec.
+                  Sumbersari, Kabupaten Jember, Jawa Timur 68121</span
+                >
               </li>
             </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link fw-semibold px-3 dropdown-toggle" href="#" id="beritaDropdown" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Informasi
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="beritaDropdown">
+          </div>
+          <!-- Link Cepat -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="fw-bold mb-3" style="color: #fff">Link Cepat</div>
+            <ul class="list-unstyled d-flex flex-column gap-2">
               <li>
-                <a class="dropdown-item" href="https://himaprodisti.wordpress.com/category/berita/" target="_blank"
-                  rel="noopener">Berita</a>
+                <a
+                  href="index.html#about"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Tentang Kami</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" href="https://himaprodisti.wordpress.com/category/artikel/" target="_blank"
-                  rel="noopener">Artikel</a>
+                <a
+                  href="index.html#divisi"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Divisi</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" href="https://himaprodisti.wordpress.com/category/opini/" target="_blank"
-                  rel="noopener">Opini</a>
+                <a
+                  href="index.html#kegiatan"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Kegiatan</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" href="https://himaprodisti.wordpress.com/category/prestasi/" target="_blank"
-                  rel="noopener">Prestasi</a>
+                <a
+                  href="index.html#kontak"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Kontak</a
+                >
+              </li>
+              <li>
+                <!-- <a
+                  href="login.html"
+                  class="text-decoration-none"
+                  style="color: #bae6fd"
+                  >Login</a
+                > -->
               </li>
             </ul>
-          </li>
-          <style>
-            body[data-theme="dark"] .dropdown-menu {
-              background-color: #222 !important;
-              color: #fff !important;
-              border: none;
-              box-shadow: none;
-            }
-
-            body[data-theme="dark"] .dropdown-menu .dropdown-item {
-              color: #fff !important;
-              background: none !important;
-            }
-
-            body[data-theme="dark"] .dropdown-menu .dropdown-item:hover,
-            body[data-theme="dark"] .dropdown-menu .dropdown-item:focus {
-              background-color: #2563eb !important;
-              color: #fff !important;
-            }
-          </style>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-semibold px-3" href="#kontak">Kontak</a>
-          </li>
-        </ul>
+          </div>
+          <!-- Social Media -->
+          <div class="col-md-4">
+            <div class="fw-bold mb-3" style="color: #fff">Tetap Terhubung</div>
+            <p class="mb-3" style="color: #e0e7ef">
+              Dapatkan info terbaru tentang kegiatan dan program HIMASTI.
+            </p>
+            <div class="d-flex gap-3">
+              <a
+                href="https://www.instagram.com/himasti.itsm/"
+                class="social-link btn btn-light shadow rounded-circle p-2"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                style="
+                  background: linear-gradient(135deg, #fdc468 0%, #df4996 100%);
+                  border: none;
+                "
+              >
+                <i class="fab fa-instagram fs-5" style="color: #fff"></i>
+              </a>
+              <a
+                href="https://www.tiktok.com/@himasti.itsm?is_from_webapp=1&sender_device=pc"
+                class="social-link btn btn-light shadow rounded-circle p-2"
+                target="_blank"
+                rel="noopener"
+                aria-label="TikTok"
+                style="background: #000; border: none"
+              >
+                <i class="fab fa-tiktok fs-5" style="color: #fff"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UCMZ8ZuleQ4FjHVtzClYaRGg"
+                class="social-link btn btn-light shadow rounded-circle p-2"
+                target="_blank"
+                rel="noopener"
+                aria-label="YouTube"
+                style="background: #ff0000; border: none"
+              >
+                <i class="fab fa-youtube fs-5" style="color: #fff"></i>
+              </a>
+              <a
+                href="https://github.com/himastimandala-commits"
+                class="social-link btn btn-light shadow rounded-circle p-2"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub"
+                style="background: #222; border: none"
+              >
+                <i class="fab fa-github fs-5" style="color: #fff"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" style="border-color: #bae6fd; opacity: 0.3" />
+        <div class="text-center small" style="color: #e0e7ef">
+          © <span id="year"></span> <b>HIMASTI</b> &mdash; Sistem &amp;
+          Teknologi Informasi
+        </div>
       </div>
-      <div class="ms-lg-3 mt-2 mt-lg-0 d-flex align-items-center gap-2">
-        <!-- <a href="login.html" class="btn btn-primary px-3 shadow-sm">
-              <i class="fas fa-sign-in-alt me-2"></i>Login
-            </a> -->
-        <!-- Dark Mode Toggle -->
-        <button class="theme-toggle btn btn-light border-0 shadow-sm ms-2" id="themeToggle"
-          style="width: 40px; height: 40px; border-radius: 50%" aria-label="Toggle theme">
-          <i class="fas fa-moon"></i>
+    </footer>
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
+    <button id="backToTop" aria-label="Kembali ke atas">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="assets/js/wp-posts.js"></script>
+ <!-- WhatsApp Chat Popup -->
+    <link rel="stylesheet" href="assets/css/popupwa.css" />
+    <button id="waPopupBtn" aria-label="Chat WhatsApp" type="button">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+    <div id="waPopupBox">
+      <div class="wa-header">
+        <i class="fab fa-whatsapp"></i>
+        Chat HIMASTI
+        <button class="wa-close" aria-label="Tutup" type="button">
+          &times;
         </button>
       </div>
-    </div>
-    </div>
-  </nav>
-
-  <!-- MAIN CONTENT: Struktur Kepengurusan -->
-  <main class="container-fluid my-5 org-section px-3 px-lg-5" id="struktur-organisasi"
-    style="max-width: 1450px; margin: 0 auto;">
-    <header class="mb-5 text-center">
-      <h1 class="display-6 fw-bold mb-2" style="color: #2563eb;">
-        STRUKTUR KEPENGURUSAN
-      </h1>
-      <h2 class="display-8 fw-bold mb-2" style="color: #2563eb;">
-        HIMPUNAN MAHASISWA PRODI SISTEM INFORMASI<br><span>Periode 2025–2026</span>
-      </h2>
-    </header>
-
-    <!-- Pembina (di atas) -->
-    <div class="org-top mb-4">
-      <div class="org-card text-center shadow-sm">
-        <img src="assets/img/rohim.jpeg" alt="Foto Pembina"
-          onerror="this.onerror=null;this.src='https://via.placeholder.com/96x96?text=Foto';" class="mb-2"
-          data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Pembina: Muhamat Abdul Rohim, S.Kom., M.Si."
-          style="cursor:pointer" />
-        <span class="org-role">Pembina</span>
-        <span class="org-name">Muhamat Abdul Rohim, S.Kom., M.Si.</span>
-        <span class="org-meta">Dosen Pembina</span>
-        <div class="mt-2 d-flex justify-content-center gap-2">
-          <a href="#" class="social-wa social-icon" aria-label="WhatsApp Pembina" title="WhatsApp"><i
-              class="fab fa-whatsapp"></i></a>
-          <a href="mailto:pembina@example.com" class="social-gh social-icon" aria-label="Email Pembina"
-            title="Email Pembina"><i class="fas fa-envelope"></i></a>
-        </div>
+      <div class="wa-desc">
+        Butuh info atau ingin bertanya? Klik nomor di bawah untuk chat WhatsApp
+        admin HIMASTI.
+      </div>
+      <div class="wa-action d-flex flex-column gap-2">
+        <!-- <a
+          href="https://wa.me/6285236398673?text=Halo%20HIMA%20STI%2C%20saya%20ingin%20bertanya..."
+          target="_blank"
+          rel="noopener"
+          class="wa-chat-btn d-flex align-items-center gap-2"
+        >
+          <i class="fab fa-whatsapp"></i>
+          <span>
+            <small>Ketua Umum</small>
+          </span>
+        </a> -->
+        <a
+          href="https://wa.me/6285227821434?text=Halo%20HIMA%20STI%2C%20saya%20ingin%20bertanya..."
+          target="_blank"
+          rel="noopener"
+          class="wa-chat-btn d-flex align-items-center gap-2"
+        >
+          <i class="fab fa-whatsapp"></i>
+          <span>
+            <small>Admin HIMASTI</small>
+          </span>
+        </a>
       </div>
     </div>
-
-    <!-- Ketua Umum (sentral) -->
-    <div class="org-top mb-4">
-      <div class="org-card text-center shadow-sm">
-        <img src="assets/img/zulfan.jpeg" alt="Foto Ketua Umum"
-          onerror="this.onerror=null;this.src='https://via.placeholder.com/96x96?text=Foto';" class="mb-2"
-          data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Ketua Umum: MOHAMMAD ZULFAN SYAFIQI"
-          style="cursor:pointer" />
-        <span class="org-role">Ketua Umum</span>
-        <span class="org-name">MOHAMMAD ZULFAN SYAFIQI <br> NIM : 23060022</span>
-        <span class="org-meta">Koordinator Organisasi</span>
-        <div class="mt-2 d-flex justify-content-center gap-2">
-          <a href="#" class="social-ig social-icon" aria-label="Instagram Sekretaris" title="Instagram Sekretaris"><i
-              class="fab fa-instagram"></i></a>
-          <a href="#" class="social-wa social-icon" aria-label="WhatsApp Ketua" title="WhatsApp Ketua"><i
-              class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sekretaris & Bendahara -->
-    <div class="row justify-content-center mb-4 gx-3">
-      <div class="col-12 col-md-4 d-flex justify-content-center">
-        <div class="org-card shadow-sm">
-          <img src="assets/img/tiara.jpeg" alt="Foto Sekretaris Umum"
-            onerror="this.onerror=null;this.src='https://via.placeholder.com/96x96?text=Foto';" class="mb-2"
-            data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Sekretaris Umum: Tiara Maharani "
-            style="cursor:pointer" />
-          <span class="org-role">Sekretaris Umum</span>
-          <span class="org-name">Tiara Maharani <br> NIM : 24060054</span>
-          <span class="org-meta">Koordinasi Administrasi</span>
-          <div class="mt-2 d-flex justify-content-center gap-2">
-            <a href="#" class="social-ig social-icon" aria-label="Instagram Sekretaris" title="Instagram Sekretaris"><i
-                class="fab fa-instagram"></i></a>
-            <a href="#" class="social-wa social-icon" aria-label="WhatsApp Ketua" title="WhatsApp Ketua"><i
-                class="fab fa-whatsapp"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-md-4 d-flex justify-content-center">
-        <div class="org-card shadow-sm">
-          <img src="assets/img/naila.jpeg" alt="Foto Bendahara"
-            onerror="this.onerror=null;this.src='https://via.placeholder.com/96x96?text=Foto';" class="mb-2"
-            data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Bendahara: Nama Bendahara"
-            style="cursor:pointer" />
-          <span class="org-role">Bendahara</span>
-          <span class="org-name">Naila Zulfa Armelia <br> NIM : 24060005</span>
-          <span class="org-meta">Keuangan & Pembukuan</span>
-          <div class="mt-2 d-flex justify-content-center gap-2">
-            <a href="#" class="social-ig social-icon" aria-label="Instagram Sekretaris" title="Instagram Sekretaris"><i
-                class="fab fa-instagram"></i></a>
-            <a href="#" class="social-wa social-icon" aria-label="WhatsApp Ketua" title="WhatsApp Ketua"><i
-                class="fab fa-whatsapp"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Divisi / Kabid -->
-    <section aria-labelledby="divisi-title" class="mb-5">
-      <div class="d-flex justify-content-center align-items-center mb-3">
-        <h1 class="display-5 fw-bold mb-2 text-center" style="color: #2563eb;">
-          DIVISI - DIVISI
-        </h1>
-      </div>
-      <div class="dept-row d-flex flex-wrap justify-content-center" style="gap: 1rem;">
-
-        <!-- SDM -->
-        <div class="dept-col" style="flex: 1 1 310px; max-width: 400px;">
-          <div class="org-card shadow-sm h-100" style="padding: 1.25rem 0.75rem; width: 100%;">
-            <img src="assets/img/anggi.jpeg" alt="Foto Kabid SDM"
-              onerror="this.onerror=null;this.src='https://via.placeholder.com/96x96?text=SDM';" class="mb-2"
-              data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Kabid SDM: Pritha Widya Anggita"
-              style="cursor:pointer" />
-            <span class="org-role fs-5">Kabid SDM</span>
-            <span class="org-name fs-6">Pritha Widya Anggita<br>NIM : 24060039</span>
-            <span class="org-meta mb-2">Pengelolaan Sumber Daya</span><br>
-            <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <hr class="my-2" />
-
-            <div class="member-list mt-3">
-              <div class="fw-bold mb-2 text-primary" style="font-size:1.05rem;">Anggota SDM</div>
-
-              <div class="member-item d-flex align-items-center" style="gap: 8px; padding: 6px 0;">
-                <img src="assets/img/salsa.jpeg"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/42?text=A';" alt="Salsa Ramadhani"
-                  data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Anggota SDM: Salsa Ramadhani"
-                  style="cursor:pointer; width: 42px; height: 42px; min-width: 42px; object-fit: cover;" />
-                <div style="flex: 1; min-width: 0;">
-                  <div class="fw-bold text-start" style="font-size: 0.88rem; line-height: 1.2; word-break: break-word;">
-                    Salsa Ramadhani</div>
-                  <div class="text-start text-muted" style="font-size: 0.78rem; line-height: 1.2;">NIM : 24060002</div>
-                  <div class="text-start text-muted" style="font-size: 0.75rem; line-height: 1.2;">Koordinator Rekrutmen
-                  </div>
-                </div>
-                <div class="member-socials d-flex align-items-center" style="gap: 4px; flex-shrink: 0;">
-                  <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-              </div>
-
-              <div class="member-item d-flex align-items-center" style="gap: 8px; padding: 6px 0;">
-                <img src="assets/img/captain.jpeg"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/42?text=B';"
-                  alt="Alvius Jonathan Denis K." data-bs-toggle="modal" data-bs-target="#photoModal"
-                  data-name="Anggota SDM: Alvius Jonathan Denis K."
-                  style="cursor:pointer; width: 42px; height: 42px; min-width: 42px; object-fit: cover;" />
-                <div style="flex: 1; min-width: 0;">
-                  <div class="fw-bold text-start" style="font-size: 0.88rem; line-height: 1.2; word-break: break-word;">
-                    Alvius Jonathan Denis K.</div>
-                  <div class="text-start text-muted" style="font-size: 0.78rem; line-height: 1.2;">NIM : 24060013</div>
-                  <div class="text-start text-muted" style="font-size: 0.75rem; line-height: 1.2;">Administrasi</div>
-                </div>
-                <div class="member-socials d-flex align-items-center" style="gap: 4px; flex-shrink: 0;">
-                  <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-              </div>
-
-              <div class="member-item d-flex align-items-center" style="gap: 8px; padding: 6px 0;">
-                <img src="assets/img/hanif.jpeg"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/42?text=G';" alt="Hanif Dhiya’ulhaq"
-                  data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Anggota SDM: Hanif Dhiya’ulhaq"
-                  style="cursor:pointer; width: 42px; height: 42px; min-width: 42px; object-fit: cover;" />
-                <div style="flex: 1; min-width: 0;">
-                  <div class="fw-bold text-start" style="font-size: 0.88rem; line-height: 1.2; word-break: break-word;">
-                    Hanif Dhiya’ulhaq</div>
-                  <div class="text-start text-muted" style="font-size: 0.78rem; line-height: 1.2;">NIM : 24060038</div>
-                  <div class="text-start text-muted" style="font-size: 0.75rem; line-height: 1.2;">Pengembangan SDM
-                  </div>
-                </div>
-                <div class="member-socials d-flex align-items-center" style="gap: 4px; flex-shrink: 0;">
-                  <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- INFOKOM -->
-        <div class="dept-col" style="flex: 1 1 310px; max-width: 400px;">
-          <div class="org-card shadow-sm h-100" style="padding: 1.25rem 0.75rem; width: 100%;">
-            <img src="assets/img/irfandi.png" alt="Foto Kabid INFOKOM"
-              onerror="this.onerror=null;this.src='https://via.placeholder.com/96x96?text=INFOKOM';" class="mb-2"
-              data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Kabid INFOKOM: Moh.Irfandi"
-              style="cursor:pointer" />
-            <span class="org-role fs-5">Kabid INFOKOM</span>
-            <span class="org-name fs-6">Moh.Irfandi<br>NIM : 24060058</span>
-            <span class="org-meta mb-2">Informasi & Komunikasi</span><br>
-            <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <hr class="my-2" />
-
-            <div class="member-list mt-3">
-              <div class="fw-bold mb-2 text-primary" style="font-size:1.05rem;">Anggota INFOKOM</div>
-
-              <div class="member-item d-flex align-items-center" style="gap: 8px; padding: 6px 0;">
-                <img src="assets/img/jane.jpeg"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/42?text=C';"
-                  alt="Jane Gwenogia Jandoko" data-bs-toggle="modal" data-bs-target="#photoModal"
-                  data-name="Anggota INFOKOM: Jane Gwenogia Jandoko"
-                  style="cursor:pointer; width: 42px; height: 42px; min-width: 42px; object-fit: cover;" />
-                <div style="flex: 1; min-width: 0;">
-                  <div class="fw-bold text-start" style="font-size: 0.88rem; line-height: 1.2; word-break: break-word;">
-                    Jane Gwenogia Jandoko</div>
-                  <div class="text-start text-muted" style="font-size: 0.78rem; line-height: 1.2;">NIM : 24060017</div>
-                  <div class="text-start text-muted" style="font-size: 0.75rem; line-height: 1.2;">Website & Media
-                    Sosial</div>
-                </div>
-                <div class="member-socials d-flex align-items-center" style="gap: 4px; flex-shrink: 0;">
-                  <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-              </div>
-
-              <div class="member-item d-flex align-items-center" style="gap: 8px; padding: 6px 0;">
-                <img src="assets/img/24060010.jpg"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/42?text=D';"
-                  alt="Adhityanes Hizkia A. W." data-bs-toggle="modal" data-bs-target="#photoModal"
-                  data-name="Anggota INFOKOM: Adhityanes Hizkia A. W."
-                  style="cursor:pointer; width: 42px; height: 42px; min-width: 42px; object-fit: cover;" />
-                <div style="flex: 1; min-width: 0;">
-                  <div class="fw-bold text-start" style="font-size: 0.88rem; line-height: 1.2; word-break: break-word;">
-                    Adhityanes Hizkia A. W.</div>
-                  <div class="text-start text-muted" style="font-size: 0.78rem; line-height: 1.2;">NIM : 24060010</div>
-                  <div class="text-start text-muted" style="font-size: 0.75rem; line-height: 1.2;">Desain & Multimedia
-                  </div>
-                </div>
-                <div class="member-socials d-flex align-items-center" style="gap: 4px; flex-shrink: 0;">
-                  <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-              </div>
-
-              <div class="member-item d-flex align-items-center" style="gap: 8px; padding: 6px 0;">
-                <img src="assets/img/putri.jpeg"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/42?text=J';" alt="Putri Ayu"
-                  data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Anggota INFOKOM: Putri Ayu"
-                  style="cursor:pointer; width: 42px; height: 42px; min-width: 42px; object-fit: cover;" />
-                <div style="flex: 1; min-width: 0;">
-                  <div class="fw-bold text-start" style="font-size: 0.88rem; line-height: 1.2; word-break: break-word;">
-                    Putri Ayu</div>
-                  <div class="text-start text-muted" style="font-size: 0.78rem; line-height: 1.2;">NIM : 24060034</div>
-                  <div class="text-start text-muted" style="font-size: 0.75rem; line-height: 1.2;">Publikasi &
-                    Dokumentasi</div>
-                </div>
-                <div class="member-socials d-flex align-items-center" style="gap: 4px; flex-shrink: 0;">
-                  <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LITBANG -->
-        <div class="dept-col" style="flex: 1 1 310px; max-width: 400px;">
-          <div class="org-card shadow-sm h-100" style="padding: 1.25rem 0.75rem; width: 100%;">
-            <img src="assets/img/nabila.jpeg" alt="Foto Kabid LITBANG"
-              onerror="this.onerror=null;this.src='https://via.placeholder.com/96x96?text=LITBANG';" class="mb-2"
-              data-bs-toggle="modal" data-bs-target="#photoModal" data-name="Kabid LITBANG: Nabila Ainnur Rohmah"
-              style="cursor:pointer" />
-            <span class="org-role fs-5">Kabid LITBANG</span>
-            <span class="org-name fs-6">Nabila Ainnur Rohmah<br>NIM : 24060015</span>
-            <span class="org-meta mb-2">Penelitian & Pengembangan</span><br>
-            <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <hr class="my-2" />
-
-            <div class="member-list mt-3">
-              <div class="fw-bold mb-2 text-primary" style="font-size:1.05rem;">Anggota LITBANG</div>
-
-              <div class="member-item d-flex align-items-center" style="gap: 8px; padding: 6px 0;">
-                <img src="assets/img/abdis.jpeg"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/42?text=E';"
-                  alt="Abdis Shahid Al Amin" data-bs-toggle="modal" data-bs-target="#photoModal"
-                  data-name="Anggota LITBANG: Abdis Shahid Al Amin"
-                  style="cursor:pointer; width: 42px; height: 42px; min-width: 42px; object-fit: cover;" />
-                <div style="flex: 1; min-width: 0;">
-                  <div class="fw-bold text-start" style="font-size: 0.88rem; line-height: 1.2; word-break: break-word;">
-                    Abdis Shahid Al Amin</div>
-                  <div class="text-start text-muted" style="font-size: 0.78rem; line-height: 1.2;">NIM : 24060011</div>
-                  <div class="text-start text-muted" style="font-size: 0.75rem; line-height: 1.2;">Riset & Publikasi
-                  </div>
-                </div>
-                <div class="member-socials d-flex align-items-center" style="gap: 4px; flex-shrink: 0;">
-                  <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-              </div>
-
-              <div class="member-item d-flex align-items-center" style="gap: 8px; padding: 6px 0;">
-                <img src="assets/img/rehan.jpeg"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/42?text=F';"
-                  alt="Reyhan Catur Abdillah" data-bs-toggle="modal" data-bs-target="#photoModal"
-                  data-name="Anggota LITBANG: Reyhan Catur Abdillah"
-                  style="cursor:pointer; width: 42px; height: 42px; min-width: 42px; object-fit: cover;" />
-                <div style="flex: 1; min-width: 0;">
-                  <div class="fw-bold text-start" style="font-size: 0.88rem; line-height: 1.2; word-break: break-word;">
-                    Reyhan Catur Abdillah</div>
-                  <div class="text-start text-muted" style="font-size: 0.78rem; line-height: 1.2;">NIM : 24060033</div>
-                  <div class="text-start text-muted" style="font-size: 0.75rem; line-height: 1.2;">Data & Analisis</div>
-                </div>
-                <div class="member-socials d-flex align-items-center" style="gap: 4px; flex-shrink: 0;">
-                  <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-              </div>
-
-              <div class="member-item d-flex align-items-center" style="gap: 8px; padding: 6px 0;">
-                <img src="assets/img/audrey.jpeg"
-                  onerror="this.onerror=null;this.src='https://via.placeholder.com/42?text=M';"
-                  alt="Audrey Kayla Firdaus A.H." data-bs-toggle="modal" data-bs-target="#photoModal"
-                  data-name="Anggota LITBANG: Audrey Kayla Firdaus A.H."
-                  style="cursor:pointer; width: 42px; height: 42px; min-width: 42px; object-fit: cover;" />
-                <div style="flex: 1; min-width: 0;">
-                  <div class="fw-bold text-start" style="font-size: 0.88rem; line-height: 1.2; word-break: break-word;">
-                    Audrey Kayla Firdaus A.H.</div>
-                  <div class="text-start text-muted" style="font-size: 0.78rem; line-height: 1.2;">NIM : 24060019</div>
-                  <div class="text-start text-muted" style="font-size: 0.75rem; line-height: 1.2;">Inovasi Program</div>
-                </div>
-                <div class="member-socials d-flex align-items-center" style="gap: 4px; flex-shrink: 0;">
-                  <a href="#" class="social-ig social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="#" class="social-wa social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-  </main>
-  <!-- Photo modal (Bootstrap) -->
-  <div class="modal fade" id="photoModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-0">
-        <div class="modal-body p-3 text-center">
-          <img id="modalPhoto" src="" alt=""
-            style="width:160px;height:160px;object-fit:cover;border-radius:10px;border:1px solid #e9ecef" />
-          <h5 id="modalCaption" class="mt-3 mb-0"></h5>
-          <button type="button" class="btn btn-sm btn-secondary mt-3" data-bs-dismiss="modal">Tutup</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer id="kontak" class="footer py-5 border-0"
-    style="background: linear-gradient(100deg, #2563eb 0%, #38bdf8 100%); color: #fff; box-shadow: 0 0 32px 0 rgba(37,99,235,0.08);">
-    <div class="container">
-      <div class="row g-4 align-items-start">
-        <div class="col-md-4 mb-4 mb-md-0">
-          <div class="d-flex align-items-center gap-2 mb-3">
-            <img src="assets/img/logo.png" class="brand-badge shadow" alt="Logo"
-              style="width: 48px; height: 48px; border-radius: 14px; background: #fff;" />
-            <span class="fw-bold fs-4" style="color: #fff;">HIMA STI</span>
-          </div>
-          <p class="mb-3" style="color: #e0e7ef;">
-            Himpunan Mahasiswa Sistem &amp; Teknologi Informasi<br />
-            Fakultas Sains, Teknologi, dan Industri<br />
-            Institut Teknologi dan Sains Mandala
-          </p>
-          <ul class="list-unstyled mb-2" style="color: #e0e7ef;">
-            <li class="mb-1">
-              <i class="fas fa-envelope me-2 text-info"></i>
-              <a href="mailto:hmjsti.mandala@gmail.com"
-                class="text-white text-decoration-none">hmjsti.mandala@gmail.com</a>
-            </li>
-            <li class="mb-1">
-              <i class="fas fa-phone me-2 text-info"></i>
-              <a href="tel:085236398673" class="text-white text-decoration-none">085236398673</a>
-            </li>
-            <li>
-              <i class="fas fa-map-marker-alt me-2 text-info"></i>
-              <span style="color: #e0e7ef;">Jl. Sumatra No.118-120, Tegal Boto Lor, Sumbersari, Kec. Sumbersari,
-                Kabupaten Jember, Jawa Timur 68121</span>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-4 mb-4 mb-md-0">
-          <div class="fw-bold mb-3" style="color: #fff;">Link Cepat</div>
-          <ul class="list-unstyled d-flex flex-column gap-2">
-            <li>
-              <a href="#about" class="text-decoration-none" style="color: #bae6fd;">Tentang Kami</a>
-            </li>
-            <li>
-              <a href="#divisi" class="text-decoration-none" style="color: #bae6fd;">Divisi</a>
-            </li>
-            <li>
-              <a href="#kegiatan" class="text-decoration-none" style="color: #bae6fd;">Kegiatan</a>
-            </li>
-            <li>
-              <a href="#kontak" class="text-decoration-none" style="color: #bae6fd;">Kontak</a>
-            </li>
-            <!-- <li>
-                <a href="login.html" class="text-decoration-none" style="color: #bae6fd;">Login</a>
-              </li> -->
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <div class="fw-bold mb-3" style="color: #fff;">Tetap Terhubung</div>
-          <p class="mb-3" style="color: #e0e7ef;">
-            Dapatkan info terbaru tentang kegiatan dan program HIMA Prodi STI.
-          </p>
-          <div class="d-flex gap-3">
-            <a href="https://www.instagram.com/himasti.itsm/"
-              class="social-link btn btn-light shadow rounded-circle p-2" target="_blank" rel="noopener"
-              aria-label="Instagram"
-              style="background: linear-gradient(135deg, #fdc468 0%, #df4996 100%); border: none;">
-              <i class="fab fa-instagram fs-5" style="color: #fff;"></i>
-            </a>
-            <a href="https://www.tiktok.com/@himasti.itsm?is_from_webapp=1&sender_device=pc"
-              class="social-link btn btn-light shadow rounded-circle p-2" target="_blank" rel="noopener"
-              aria-label="TikTok" style="background: #000; border: none;">
-              <i class="fab fa-tiktok fs-5" style="color: #fff;"></i>
-            </a>
-            <a href="https://www.youtube.com/channel/UCMZ8ZuleQ4FjHVtzClYaRGg"
-              class="social-link btn btn-light shadow rounded-circle p-2" target="_blank" rel="noopener"
-              aria-label="YouTube" style="background: #ff0000; border: none;">
-              <i class="fab fa-youtube fs-5" style="color: #fff;"></i>
-            </a>
-            <a href="https://github.com/himastimandala-commits"
-              class="social-link btn btn-light shadow rounded-circle p-2" target="_blank" rel="noopener"
-              aria-label="GitHub" style="background: #222; border: none;">
-              <i class="fab fa-github fs-5" style="color: #fff;"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <hr class="my-4" style="border-color: #bae6fd; opacity: 0.3;" />
-      <div class="text-center small" style="color: #e0e7ef;">
-        © <span id="year"></span> <b>HIMA Prodi STI</b> &mdash; Sistem &amp; Teknologi Informasi
-      </div>
-    </div>
-  </footer>
-  <!-- Back to Top Button -->
-  <button id="backToTop" aria-label="Kembali ke atas">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-
-  <!-- Bootstrap + AOS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-  <!-- WP posts cukup 1x -->
-  <script src="assets/js/wp-posts.js"></script>
-
-  <script>
-    // Initialize AOS if present
-    if (window.AOS) AOS.init();
-
-    // Photo modal behavior: when any image with data-bs-target="#photoModal" is clicked,
-    // transfer its src and caption to modal.
-    document.querySelectorAll('[data-bs-target="#photoModal"]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        const src = el.getAttribute('src') || el.dataset.src || '';
-        const name = el.dataset.name || el.alt || '';
-        const modalImg = document.getElementById('modalPhoto');
-        const modalCaption = document.getElementById('modalCaption');
-
-        modalImg.src = src;
-        modalImg.alt = name;
-        modalCaption.textContent = name;
+    <script>
+      const waBtn = document.getElementById("waPopupBtn");
+      const waBox = document.getElementById("waPopupBox");
+      const waClose = waBox.querySelector(".wa-close");
+      // Agar klik pada icon di dalam tombol juga membuka popup
+      waBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        waBox.style.display = waBox.style.display === "flex" ? "none" : "flex";
       });
-    });
-
-    // Optional: keyboard accessibility for member items
-    document.querySelectorAll('.member-item img').forEach(img => {
-      img.setAttribute('tabindex', '0');
-      img.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          img.click();
-        }
-      });
-    });
-
-    // Theme toggle (very small example): toggles data-theme attribute on body
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        const body = document.body;
-        const current = body.getAttribute('data-theme') || 'light';
-        const next = current === 'light' ? 'dark' : 'light';
-        body.setAttribute('data-theme', next);
-        // swap icon
-        const icon = themeToggle.querySelector('i');
-        if (icon) {
-          icon.classList.toggle('fa-moon');
-          icon.classList.toggle('fa-sun');
-        }
-      });
-    }
-  </script>
-  <script>
-    document.querySelectorAll("a.nav-link, a.dropdown-item").forEach(link => {
-      link.addEventListener("click", function () {
-        const text = this.textContent.trim();
-        document.title = "HIMA PRODI STI | " + text;
-      });
-    });
-  </script>
-  <!-- WhatsApp Chat Popup -->
-  <link rel="stylesheet" href="assets/css/popupwa.css" />
-  <button id="waPopupBtn" aria-label="Chat WhatsApp" type="button">
-    <i class="fab fa-whatsapp"></i>
-  </button>
-  <div id="waPopupBox">
-    <div class="wa-header">
-      <i class="fab fa-whatsapp"></i>
-      Chat HIMA STI
-      <button class="wa-close" aria-label="Tutup" type="button">
-        &times;
-      </button>
-    </div>
-    <div class="wa-desc">
-      Butuh info atau ingin bertanya? Klik nomor di bawah untuk chat WhatsApp
-      admin HIMA Prodi STI.
-    </div>
-    <div class="wa-action d-flex flex-column gap-2">
-      <a href="https://wa.me/6285236398673?text=Halo%20HIMA%20STI%2C%20saya%20ingin%20bertanya..." target="_blank"
-        rel="noopener" class="wa-chat-btn d-flex align-items-center gap-2">
-        <i class="fab fa-whatsapp"></i>
-        <span>
-          <small>Ketua Umum</small>
-        </span>
-      </a>
-      <a href="https://wa.me/6285227821434?text=Halo%20HIMA%20STI%2C%20saya%20ingin%20bertanya..." target="_blank"
-        rel="noopener" class="wa-chat-btn d-flex align-items-center gap-2">
-        <i class="fab fa-whatsapp"></i>
-        <span>
-          <small>Sekretaris Umum</small>
-        </span>
-      </a>
-    </div>
-  </div>
-  <script>
-    const waBtn = document.getElementById("waPopupBtn");
-    const waBox = document.getElementById("waPopupBox");
-    const waClose = waBox.querySelector(".wa-close");
-    // Agar klik pada icon di dalam tombol juga membuka popup
-    waBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      waBox.style.display = waBox.style.display === "flex" ? "none" : "flex";
-    });
-    waClose.addEventListener("click", function (e) {
-      e.stopPropagation();
-      waBox.style.display = "none";
-    });
-    document.addEventListener("click", function (e) {
-      if (
-        waBox.style.display === "flex" &&
-        !waBox.contains(e.target) &&
-        !waBtn.contains(e.target)
-      ) {
+      waClose.addEventListener("click", function (e) {
+        e.stopPropagation();
         waBox.style.display = "none";
-      }
-    });
-  </script>
-  <script>
-    // Set current year in footer
-    document.getElementById("year").textContent = new Date().getFullYear();
+      });
+      document.addEventListener("click", function (e) {
+        if (
+          waBox.style.display === "flex" &&
+          !waBox.contains(e.target) &&
+          !waBtn.contains(e.target)
+        ) {
+          waBox.style.display = "none";
+        }
+      });
+    </script>
+    <script>
+      // ============================
+      // YEAR
+      // ============================
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Change document title on navbar link click
-    document
-      .querySelectorAll("a.nav-link, a.dropdown-item")
-      .forEach((link) => {
-        link.addEventListener("click", function () {
-          document.title = "HIMA PRODI STI | " + this.textContent.trim();
+      // ============================
+      // AOS
+      // ============================
+      if (window.AOS) {
+        AOS.init({
+          once: false,
+          mirror: true,
+          duration: 800,
+          easing: "ease-out-cubic",
         });
-      });
-
-    // Back to Top Button Functionality
-    const backToTop = document.getElementById("backToTop");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        backToTop.classList.add("show");
-      } else {
-        backToTop.classList.remove("show");
       }
-    });
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    });
-  </script>
-</body>
 
+      // ============================
+      // PHOTO MODAL
+      // ============================
+      document
+        .querySelectorAll('[data-bs-target="#photoModal"]')
+        .forEach(function (el) {
+          el.addEventListener("click", function (e) {
+            var src = this.getAttribute("src") || this.dataset.src || "";
+            var name = this.dataset.name || this.alt || "";
+            document.getElementById("modalPhoto").src = src;
+            document.getElementById("modalPhoto").alt = name;
+            document.getElementById("modalCaption").textContent = name;
+          });
+        });
+
+      // ============================
+      // THEME TOGGLE
+      // ============================
+      var themeToggle = document.getElementById("themeToggle");
+      var body = document.body;
+
+      // Cek preferensi dari localStorage
+      var savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        body.setAttribute("data-theme", savedTheme);
+        updateThemeIcon(savedTheme);
+      }
+
+      themeToggle.addEventListener("click", function () {
+        var current = body.getAttribute("data-theme") || "light";
+        var next = current === "light" ? "dark" : "light";
+        body.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        updateThemeIcon(next);
+      });
+
+      function updateThemeIcon(theme) {
+        var icon = themeToggle.querySelector("i");
+        if (icon) {
+          if (theme === "dark") {
+            icon.className = "fas fa-sun";
+          } else {
+            icon.className = "fas fa-moon";
+          }
+        }
+      }
+
+      // ============================
+      // BACK TO TOP
+      // ============================
+      var backToTop = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 400) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      backToTop.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // ============================
+      // NAV LINK ACTIVE
+      // ============================
+      document
+        .querySelectorAll("a.nav-link, a.dropdown-item")
+        .forEach(function (link) {
+          link.addEventListener("click", function () {
+            document.title = "HIMA PRODI STI | " + this.textContent.trim();
+            // Remove active from all nav links
+            document.querySelectorAll(".nav-link").forEach(function (nav) {
+              nav.classList.remove("active");
+            });
+            if (this.closest(".navbar-nav") || this.closest(".dropdown-menu")) {
+              // Mark as active if it's a nav link
+              if (this.classList.contains("nav-link")) {
+                this.classList.add("active");
+              }
+            }
+          });
+        });
+
+      // ============================
+      // SCROLL ANIMATION FOR CARDS
+      // ============================
+      // Intersection Observer untuk efek tambahan
+      var observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".org-card").forEach(function (card) {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(30px)";
+        card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(card);
+      });
+    </script>
+  </body>
 </html>
